@@ -27,6 +27,9 @@ use App\Http\Controllers\CartController;
  Route::get('login',[UserController::class,'login'])->name('user.login'); // hiển thị
  Route::post('login',[UserController::class,'check_login']);
  Route::get('logout',[UserController::class,'logout'])->name('user.logout'); // thoát
+ 
+ Route::get('logout',[UserController::class,'logout'])->name('user.logout'); // thoát
+
 
 
 
