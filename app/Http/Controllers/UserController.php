@@ -9,8 +9,10 @@ use App\Http\Requests\Customer\CustomerRequestStore as reqCus;
 use App\Http\Requests\Customer\CustomerRequestLogin as reqCusLogin;
 class UserController extends Controller
 {
-   public function home(){
-       return view('user.home');
+   public function home(Product $product){
+        $productSale = $product->orderby('sale_price','desc')->paginate(8);
+        $productHot = $product->orderby('id','desc')->paginate(4);
+       return view('user.home',compact('productSale'),compact('productHot'));
    }
    public function shop(){
        $product = Product::search()->paginate(4);
@@ -35,11 +37,13 @@ class UserController extends Controller
         }
     }
     public function login(){
+
         return view('customer.login');
     }
     public function check_login(reqCusLogin $reqLogin){
         $data=$reqLogin->only('email','password');
-        // $password = bcrypt('123456') ; dd($password); // lấy mã hóa mất khẩu 
+        // $password = bcrypt('123456') ; 
+        // dd($password); // lấy mã hóa mất khẩu 
         $check = auth()->guard('customer')->attempt($data); // xác thực người dùng thủ công 
         if ($check) {
           return redirect()->route('user')->with('ok','Đăng nhập thành công !');

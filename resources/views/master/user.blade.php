@@ -1,261 +1,282 @@
 <!DOCTYPE html>
-<!--
-	ustora by freshdesignweb.com
-	Twitter: https://twitter.com/freshdesignweb
-	URL: https://www.freshdesignweb.com/ustora/
--->
-<html lang="en">
+<html xml:lang="en" lang="en">
+
+<!-- Mirrored from demo.7uptheme.com/html/mello/home-01.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 25 Jul 2015 06:56:21 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<!-- /Added by HTTrack -->
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{url('public/usercss')}}/style/css/style-main.css" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans" media="all" />
     <title>@yield('title')</title>
-
-    <!-- Google Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet'
-        type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="{{url('public/usercss')}}/css/bootstrap.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{url('public/usercss')}}/css/font-awesome.min.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{url('public/usercss')}}/css/owl.carousel.css">
-    <link rel="stylesheet" href="{{url('public/usercss')}}/css/css.css">
-    <link rel="stylesheet" href="{{url('public/usercss')}}/style.css">
-    <link rel="stylesheet" href="{{url('public/usercss')}}/css/responsive.css">
-
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 
-<body>
-    <div class="header-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    @if(auth()->guard('customer')->check())
-                    <div class="user-menu">
-                        <ul>
-                            <li><a href="#"><i class="fa fa-user"></i>{{auth()->guard('customer')->user()->name}}</a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-heart"></i> Yêu Thích</a></li>
-                            <li><a href="{{route('cart.view')}}"><i class="fa fa-shopping-cart"></i>Giỏ Hàng</a></li>
-                            <li><a href="#"><i class="fa fa-history"></i>Lịch sử mua hàng</a></li>
-                            <li><a href="{{route('user.logout')}}"><i class="fa fa-sign-out"></i>Đăng xuất</a></li>
-                        </ul>
+<body class="home">
+    <!--begin header-->
+    <div id="box-header">
+        <div class="header-container">
+            <div class="header">
+                <div class="box-header-01">
+                    <div class="container">
+                        <div class="row">
+                            <div class="logo">
+                                <a href="home-01.html"><img src="{{url('public/usercss')}}/images/logodefault.png"
+                                        alt="" /></a>
+                            </div>
+                            <div class="menu">
+                                <div class="box-main-menu">
+                                    <div class="main-menu">
+                                        <ul>
+                                            <li class="item1 first"><a href="home-01.html">Trang Chủ</a></li>
+                                            <li class="item2 megamenu-parent"><a href="grid.html">Danh Mục</a>
+                                                <div class="vt_megamenu_content">
+                                                    <div class="mega-menu-01">
+                                                        <div class="menu-01 menu-01-cate">
+                                                            <ul class="content-col">
+                                                                @foreach($categories as $category)
+                                                                <li class=""><a 
+                                                                href="{{route('user.category',['category'=>$category->id,'slug'=>Str::slug($category->name)])}}"><span>{{$category->name}}</span></a></li>
+                                                                     @endforeach   
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="item2 megamenu-parent"><a href="grid.html">Tin Tức</a>
+                                            <li class="item2 megamenu-parent"><a href="grid.html">Hệ thống bảo hành &
+                                                    đổi trả</a>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="account-and-cart">
+                                <div class="my-account">
+                                    <div class="content">
+                                        <ul class="left">
+                                            <li><a class="top-link-myaccount" href="#">My Account</a></li>
+                                            <li><a class="top-link-wishlist" href="#">My Wishlist</a></li>
+                                            <li><a class="top-link-checkout" href="#">Checkout</a></li>
+                                            <li><a class="top-link-login" href="#">Log In</a></li>
+                                        </ul>
+                                        <ul class="right">
+                                            <li class="language">
+                                                <a href="#" class="selected"><img
+                                                        src="{{url('public/usercss')}}/images/flags/flag-french.jpg"
+                                                        alt="" />French</a>
+                                                <ul>
+                                                    <li>
+                                                        <a href="home-01.html"><img
+                                                                src="{{url('public/usercss')}}/images/flags/flag-default.jpg"
+                                                                alt="" />English</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="home-02.html"><img
+                                                                src="{{url('public/usercss')}}/images/flags/flag-french.jpg"
+                                                                alt="" />French</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="monney last"><a href="#" class="selected">EUR</a>
+                                                <ul>
+                                                    <li><a href="#"><span>&euro;</span> EUR</a></li>
+                                                    <li><a href="#"><span>$</span> USD</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="box-cart">
+                                    <div class="cart-mini">
+                                        <div class="title">
+                                            <span class="item">0</span>
+                                        </div>
+                                        <div class="block-content">
+                                            <div class="inner">
+                                                <p class="block-subtitle">Recently added item(s)</p>
+                                                <ol id="cart-sidebar" class="mini-products-list">
+                                                    <li class="item">
+                                                        <a href="#" title="Fashion Product 09" class="product-image">
+                                                            <img src="{{url('public/usercss')}}/images/product/small/image-demo-1.jpg"
+                                                                alt="Fashion Product 09" />
+                                                        </a>
+                                                        <a href="#" class="btn-remove">Remove This Item</a>
+                                                        <a href="#" title="Edit item" class="btn-edit">Edit item</a>
+                                                        <div class="product-details">
+                                                            <p class="product-name"><a title="Fashion Product 09"
+                                                                    href="#">Fashion Product 09</a></p>
+                                                            <span class="price">$200.00</span>
+                                                            <div class="qty-abc">
+                                                                <a title="Decrement" class="qty-change-left"
+                                                                    href="#">down</a>
+                                                                <input class="input-text qty" type="text" value="1" />
+                                                                <a title="Increment" class="qty-change-right"
+                                                                    href="#">up</a>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ol>
+                                                <div class="summary">
+                                                    <p class="subtotal">
+                                                        <span class="label">Subtotal:</span> <span
+                                                            class="price">$200.00</span>
+                                                    </p>
+                                                </div>
+                                                <div class="actions">
+                                                    <div class="a-inner">
+                                                        <a class="btn-mycart" href="#" title="View my cart">view my
+                                                            cart</a>
+                                                        <a href="#" title="Checkout" class="btn-checkout">Checkout</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    @else
-                    <div class="user-menu">
-                        <ul>
-                            <li><a href="{{route('user.login')}}"><i class="fa fa-user"></i> Đăng Nhập</a></li>
-                            <li><a href="{{route('cart.view')}}"><i class="fa fa-shopping-cart"></i>Giỏ Hàng</a></li>
-                        </ul>
+                    <div class="bgr-menu">
                     </div>
-                    @endif
+                </div>
+                <div class="box-header-03">
+                    <div class="container">
+                        <div class="row">
+                            <span class="shipping"><a href="#">Giao hàng miễn phí-Trả hàng miễn phí</a></span>
+                            <span class="gift"><a href="#">Quà tặng hấp dẫn </a></span>
+                            <span class="customer"><a href="#">Hỗ trợ 24/7</a></span>
+                            <div class="box-search">
+                                <form action="http://demo.7uptheme.com/html/mello/home-01.html?q=exp" method="POST">
+                                    <button><span>search</span></button>
+                                    <ul class="drop-search">
+                                        <li>
+                                            <span class="selected">All Categories </span>
+                                            <ul>
+                                                <li>All Categories </li>
+                                                <li>Cate 1</li>
+                                                <li>Cate 2</li>
+                                                <li>Cate 3</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <input name="search" type="text" value="" placeholder="Tìm kiếm sản phẩm " />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div> <!-- End header area -->
-
-    <div class="site-branding-area">
-        <div class="container">
-            @if(Session::has('ok'))
-            <div class="alert alert-success">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                {{Session::get('ok')}}
-            </div>
-            @endif
-            @if(Session::has('no'))
-            <div class="alert alert-danger">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                {{Session::get('no')}}
-            </div>
-            @endif
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="logo">
-                        <h1><a href="./"><img src="{{url('public/usercss')}}/img/logo.png"></a></h1>
-                    </div>
-                </div>
-
-                <div class="col-sm-6">
-                    <div class="shopping-item">
-                        <a href="cart.html">Giỏ Hàng - <span class="cart-amunt">$100</span> <i
-                                class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> <!-- End site branding area -->
-
-    <div class="container">
-        <nav class="navbar navbar-default" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav">
-                    <li class=""><a href="{{route('user')}}">Trang Chủ</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-left">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Danh Mục <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            @foreach($categories as $cat )
-                            <li><a
-                                    href="{{route('user.category',['category'=>$cat->id,'slug'=>Str::slug($cat->name)])}}">{{$cat ->name}}</a>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                    <li><a href="{{route('user.shop')}}">Sản Phẩm</a></li>
-                    <li><a href="#">Tin Tức</a></li>
-                    <li><a href="#">Flash sale</a></li>
-                </ul>
-                <form action="{{route('user.shop')}}" method="GET" class="navbar-form navbar-right" role="search">
-                    <div class="form-group">
-                        <input type="text" name="key" class="form-control" placeholder="Tìm kiếm sản phẩm ">
-                    </div>
-                    <button type="submit" class="btn btn-default">Tìm kiếm</button>
-                </form>
-            </div><!-- /.navbar-collapse -->
-        </nav>
     </div>
-
-    @yield('carousel')
-
-    @yield('content')
-    <div class="brands-area">
-        <div class="zigzag-bottom"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="brand-wrapper">
-                        <div class="brand-list">
-                            <img src="{{url('public/usercss')}}/img/brand1.png" alt="">
-                            <img src="{{url('public/usercss')}}/img/brand2.png" alt="">
-                            <img src="{{url('public/usercss')}}/img/brand3.png" alt="">
-                            <img src="{{url('public/usercss')}}/img/brand4.png" alt="">
-                            <img src="{{url('public/usercss')}}/img/brand5.png" alt="">
-                            <img src="{{url('public/usercss')}}/img/brand6.png" alt="">
-                            <img src="{{url('public/usercss')}}/img/brand1.png" alt="">
-                            <img src="{{url('public/usercss')}}/img/brand2.png" alt="">
+    <!--end header-->
+    <!--begin content-->
+    @yield('main')
+    <!--end content-->
+    <!--begin footer-->
+    <div id="box-footer">
+        <div class="box-footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="row">
+                        <div class="box-connect col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="block-title"><span>Connect with</span></div>
+                            <a href="#" class="face-book">face book</a>
+                            <a href="#" class="tweeter">tweeter</a>
+                            <a href="#" class="no-name">no-name</a>
+                            <a href="#" class="pinseter">pinseter</a>
+                            <a href="#" class="google">google+</a>
+                            <a href="#" class="init">init</a>
+                        </div>
+                        <div class="box-tweeter col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="block-title"><span>tweeter</span></div>
+                            <div class="content">
+                                Leo aliquet, dictum orci at, varius ligula. Duis aliquet pellentesque tincidunt.
+                                Vestibulum finibus ceo aliquet, dictum orci at, varius ligula. Duis aliquet
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div> <!-- End brands area -->
-    <div class="footer-top-area">
-        <div class="zigzag-bottom"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-about-us">
-                        <h2>u<span>Stora</span></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus
-                            vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet
-                            eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam.
-                            Laborum commodi veritatis magni at?</p>
-                        <div class="footer-social">
-                            <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+        <div class="box-footer-middle">
+            <div class="container">
+                <div class="row">
+                    <div class="row">
+                        <div class="block block-info col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="block-title"><span>Danh Mục</span></div>
+                            <div class="block-content">
+                                <ul>
+                                @foreach($categories as $category)
+                                    <li><a href="{{route('user.category',['category'=>$category->id,'slug'=>Str::slug($category->name)])}}">{{$category->name}}</a></li>
+                                @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="block block-customer col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="block-title"><span>Khách Hàng</span></div>
+                            <div class="block-content">
+                                <ul>
+                                    <li><a href="#">Tài Khoản </a></li>
+                                    <li><a href="#">Giỏ hàng</a></li>
+                                    <li><a href="#">Lịch sử mua hàng</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="block block-cu col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="block-title"><span>Chăm sóc khách hàng</span></div>
+                            <div class="block-content">
+                                <ul>
+                                    <li class="item2"><span>+ 020.566.6666</span></li>
+                                    <li class="item3"><a href="mailto:support@7-Up.com">chamsockh1997@gmail.com</a></li>
+                                </ul>
+                                <div class="phone-nb"><a href="tel:0906868757">0385.201.482</a></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-menu">
-                        <h2 class="footer-wid-title">Khách Hàng </h2>
+            </div>
+        </div>
+        <div class="box-footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="box-left">
                         <ul>
-                            <li><a href="#">Tài Khoản</a></li>
-                            <li><a href="#">Lịch Sử Mua Hàng</a></li>
-                            <li><a href="#">Yêu Thích</a></li>
-                            <li><a href="#">Liên Hệ</a></li>
+                            <li class="home"><a>MELLO</a></li>
+                            <li><a href="#">Chăm sóc khách hàng </a><span>|</span></li>
+                            <li><a href="#">Giao hàng & Trả hàng</a><span>|</span></li>
+                            <li><a href="#">Điều khoản và điều kiện</a><span>|</span></li>
+                            <li><a href="#">Liên hệ </a></li>
+                        </ul>
+                        <h6>Mello &copy; 2015 Magento Demo Store. All Rights Reserved. Designed by <a
+                                title="Visit VnThemePro.Com!" href="7uptheme.html">7-Up</a></h6>
+                    </div>
+                    <div class="box-right">
+                        <ul>
+                            <li><img src="{{url('public/usercss')}}/images/p1.png" alt="" /></li>
+                            <li><img src="{{url('public/usercss')}}/images/p2.png" alt="" /></li>
+                            <li><img src="{{url('public/usercss')}}/images/p3.png" alt="" /></li>
+                            <li><img src="{{url('public/usercss')}}/images/p4.png" alt="" /></li>
                         </ul>
                     </div>
                 </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-menu">
-                        <h2 class="footer-wid-title">Danh Mục</h2>
-                        <ul>
-                            @foreach($categories as $cat )
-                            <li><a href="#">{{$cat->name}}</a></li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-newsletter">
-                        <h2 class="footer-wid-title">Bản Tin</h2>
-                        <p>Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to
-                            your inbox!</p>
-                        <div class="newsletter-form">
-                            <form action="#">
-                                <input type="email" placeholder="Nhập Email">
-                                <input type="submit" value="Đăng Ký">
-                            </form>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
-    </div> <!-- End footer top area -->
-
-    <div class="footer-bottom-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="copyright">
-                        <p>&copy; © 2020. CÔNG TY CỔ PHẦN XÂY DỰNG VÀ ĐẦU TƯ THƯƠNG MẠI HOÀNG HÀ <a
-                                href="https://www.facebook.com/vietanhabc/"
-                                target="_blank">https://www.facebook.com/vietanhabc</a></p>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="footer-card-icon">
-                        <i class="fa fa-cc-discover"></i>
-                        <i class="fa fa-cc-mastercard"></i>
-                        <i class="fa fa-cc-paypal"></i>
-                        <i class="fa fa-cc-visa"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> <!-- End footer bottom area -->
-
-    <!-- Latest jQuery form server -->
-    <script src="https://code.jquery.com/jquery.min.js"></script>
-
-    <!-- Bootstrap JS form CDN -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js">
-    </script>
-
-    <!-- jQuery sticky menu -->
-    <script src="{{url('public/usercss')}}/js/owl.carousel.min.js"></script>
-    <script src="{{url('public/usercss')}}/js/jquery.sticky.js"></script>
-
-    <!-- jQuery easing -->
-    <script src="{{url('public/usercss')}}/js/jquery.easing.1.3.min.js"></script>
-
-    <!-- Main Script -->
-    <script src="{{url('public/usercss')}}/js/main.js"></script>
-
-    <!-- Slider -->
-    <script type="text/javascript" src="{{url('public/usercss')}}/js/bxslider.min.js"></script>
-    <script type="text/javascript" src="{{url('public/usercss')}}/js/script.slider.js"></script>
+        <a id="gototop">Top</a>
+        <!--js-->
+        <script type="text/javascript" src="{{url('public/usercss')}}/js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="{{url('public/usercss')}}/style/bootstrap/js/bootstrap.min.js"></script>
+        <script src="{{url('public/usercss')}}/js/galary-image/js/jquery.blueimp-gallery.min.js"></script>
+        <script src="{{url('public/usercss')}}/js/galary-image/js/bootstrap-image-gallery.js"></script>
+        <script type="text/javascript" src="{{url('public/usercss')}}/js/owl-carousel/owl.carousel.js"></script>
+        <script type="text/javascript" src="{{url('public/usercss')}}/js/slideshow/jquery.themepunch.revolution.js"></script>
+        <script type="text/javascript" src="{{url('public/usercss')}}/js/slideshow/jquery.themepunch.plugins.min.js"></script>
+        <script type="text/javascript" src="{{url('public/usercss')}}/js/theme.js"></script>
+    </div>
+    <!--end footer-->
 </body>
+
+<!-- Mirrored from demo.7uptheme.com/html/mello/home-01.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 25 Jul 2015 06:56:21 GMT -->
 
 </html>

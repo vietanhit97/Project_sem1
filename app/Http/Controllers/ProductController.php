@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
-use App\Http\Requests\Product\ProductRequestUpdate as reqPro;
+use App\Http\Requests\Product\ProductRequestStore as ReqProductStore;
+use App\Http\Requests\Product\ProductRequestUpdate as ReqProductUpdate;
 class ProductController extends Controller
 {   
     public function index(Request $req){
@@ -16,7 +17,7 @@ class ProductController extends Controller
         $cats = Category::all();
         return view('admin.product.create',compact('cats'));
     }
-    public function store(reqPro $req){ 
+    public function store(ReqProductStore $req){ 
         if(Product::add()){
         return redirect()->route('product.index')->with('ok','thêm mới sản phẩm thành công');
         } 
@@ -30,7 +31,7 @@ class ProductController extends Controller
         $cats = Category::all();
         return view('admin.product.edit',compact('product','cats'));
     }
-    public function update(reqPro $req,Product $product){
+    public function update(ReqProductUpdate $req,Product $product){
         $product->updateProduct();
         return redirect()->route('product.index');
     }
