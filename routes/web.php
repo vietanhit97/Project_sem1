@@ -18,16 +18,15 @@ use App\Http\Controllers\CartController;
 |
 */
  // khai báo router 
- Route::get('admin/login',[AdminController::class,'login'])->name('admin.login'); // hiển thị
+ Route::get('admin/login',[AdminController::class,'login'])->name('admin.login'); // giao diện đăng nhập admin
  Route::post('admin/login',[AdminController::class,'check_login']); // gửi dữ liệu form check
  Route::get('admin/logout',[AdminController::class,'logout'])->name('admin.logout'); // thoát
  
- Route::get('registration',[UserController::class,'registration'])->name('user.registration'); // hiển thị
- Route::post('registration',[UserController::class,'createRegistration']);
- Route::get('login',[UserController::class,'login'])->name('user.login'); // hiển thị
- Route::post('login',[UserController::class,'check_login']);
+ Route::get('registration',[UserController::class,'registration'])->name('user.registration'); // Giao diện đăng ký tài khoản
+ Route::post('registration',[UserController::class,'createRegistration']); // check đăng ký 
+ Route::get('login',[UserController::class,'login'])->name('user.login'); // Đăng nhập
+ Route::post('login',[UserController::class,'check_login']); //giao diện đăng nhập người dùng
  Route::get('logout',[UserController::class,'logout'])->name('user.logout'); // thoát
- Route::get('vietanh',[UserController::class,'vietanh'])->name('user.vietanh'); // thoát
 
 
 

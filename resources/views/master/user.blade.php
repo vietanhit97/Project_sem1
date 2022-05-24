@@ -9,7 +9,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="{{url('public/usercss')}}/style/css/style-main.css" />
+    <link rel="stylesheet" type="text/css" href="{{url('public/usercss')}}/style/css/style-main.css"/>
+    <link rel="stylesheet" href="{{url('public/css_detal')}}/style.css">
+    <link rel="stylesheet" href="{{url('public/css_detal')}}/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{url('public/css_detal')}}/css/css.css">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans" media="all" />
     <title>@yield('title')</title>
 </head>
@@ -30,21 +33,24 @@
                                 <div class="box-main-menu">
                                     <div class="main-menu">
                                         <ul>
-                                            <li class="item1 first"><a href="home-01.html">Trang Chủ</a></li>
-                                            <li class="item2 megamenu-parent"><a href="grid.html">Danh Mục</a>
+                                            <li class="item1 first"><a href="{{route('user')}}">Trang Chủ</a></li>
+                                            <li class="item2 megamenu-parent"><a href="#">Danh Mục</a>
                                                 <div class="vt_megamenu_content">
                                                     <div class="mega-menu-01">
                                                         <div class="menu-01 menu-01-cate">
                                                             <ul class="content-col">
                                                                 @foreach($categories as $category)
-                                                                <li class=""><a 
-                                                                href="{{route('user.category',['category'=>$category->id,'slug'=>Str::slug($category->name)])}}"><span>{{$category->name}}</span></a></li>
-                                                                     @endforeach   
+                                                                <li class=""><a
+                                                                        href="{{route('user.category',['category'=>$category->id,'slug'=>Str::slug($category->name)])}}"><span>{{$category->name}}</span></a>
+                                                                </li>
+                                                                @endforeach
                                                             </ul>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </li>
+                                            <li class="item2 megamenu-parent"><a href="{{route('user.shop')}}">Sản
+                                                    Phẩm</a>
                                             <li class="item2 megamenu-parent"><a href="grid.html">Tin Tức</a>
                                             <li class="item2 megamenu-parent"><a href="grid.html">Hệ thống bảo hành &
                                                     đổi trả</a>
@@ -55,11 +61,11 @@
                             <div class="account-and-cart">
                                 <div class="my-account">
                                     <div class="content">
+                                        @if(auth()->guard('customer')->check())
                                         <ul class="left">
-                                            <li><a class="top-link-myaccount" href="#">My Account</a></li>
-                                            <li><a class="top-link-wishlist" href="#">My Wishlist</a></li>
-                                            <li><a class="top-link-checkout" href="#">Checkout</a></li>
-                                            <li><a class="top-link-login" href="#">Log In</a></li>
+                                            <li><a class="top-link-myaccount" href="#">Thông Tin</a></li>
+                                            <li><a class="top-link-wishlist" href="#">Yêu Thích</a></li>
+                                            <li><a class="top-link-login" href="{{route('user.logout')}}">Thoát</a></li>
                                         </ul>
                                         <ul class="right">
                                             <li class="language">
@@ -79,13 +85,44 @@
                                                     </li>
                                                 </ul>
                                             </li>
-                                            <li class="monney last"><a href="#" class="selected">EUR</a>
+                                            <li class="monney last"><a href="#" class="selected">VNĐ</a>
                                                 <ul>
-                                                    <li><a href="#"><span>&euro;</span> EUR</a></li>
+                                                    <li><a href="#"><span>₫</span> VNĐ</a></li>
                                                     <li><a href="#"><span>$</span> USD</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
+                                        @else
+                                        <ul class="left">
+                                            <li><a class="top-link-checkout" href="{{route('user.login')}}">Đăng
+                                                    Nhập</a></li>
+                                        </ul>
+                                        <ul class="right">
+                                            <li class="language">
+                                                <a href="#" class="selected"><img
+                                                        src="{{url('public/usercss')}}/images/flags/flag-french.jpg"
+                                                        alt="" />French</a>
+                                                <ul>
+                                                    <li>
+                                                        <a href="home-01.html"><img
+                                                                src="{{url('public/usercss')}}/images/flags/flag-default.jpg"
+                                                                alt="" />English</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="home-02.html"><img
+                                                                src="{{url('public/usercss')}}/images/flags/flag-french.jpg"
+                                                                alt="" />French</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="monney last"><a href="#" class="selected">VNĐ</a>
+                                                <ul>
+                                                    <li><a href="#"><span>₫</span> VNĐ</a></li>
+                                                    <li><a href="#"><span>$</span> USD</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="box-cart">
@@ -165,7 +202,22 @@
                                 </form>
                             </div>
                         </div>
+
                     </div>
+                </div>
+                <div class="container">
+                    @if(Session::has('ok'))
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        {{Session::get('ok')}}
+                    </div>
+                    @endif
+                    @if(Session::has('no'))
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        {{Session::get('no')}}
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -181,7 +233,7 @@
                 <div class="row">
                     <div class="row">
                         <div class="box-connect col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <div class="block-title"><span>Connect with</span></div>
+                            <div class="block-title"><span>Kết Nối</span></div>
                             <a href="#" class="face-book">face book</a>
                             <a href="#" class="tweeter">tweeter</a>
                             <a href="#" class="no-name">no-name</a>
@@ -208,9 +260,11 @@
                             <div class="block-title"><span>Danh Mục</span></div>
                             <div class="block-content">
                                 <ul>
-                                @foreach($categories as $category)
-                                    <li><a href="{{route('user.category',['category'=>$category->id,'slug'=>Str::slug($category->name)])}}">{{$category->name}}</a></li>
-                                @endforeach
+                                    @foreach($categories as $category)
+                                    <li><a
+                                            href="{{route('user.category',['category'=>$category->id,'slug'=>Str::slug($category->name)])}}">{{$category->name}}</a>
+                                    </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -270,8 +324,10 @@
         <script src="{{url('public/usercss')}}/js/galary-image/js/jquery.blueimp-gallery.min.js"></script>
         <script src="{{url('public/usercss')}}/js/galary-image/js/bootstrap-image-gallery.js"></script>
         <script type="text/javascript" src="{{url('public/usercss')}}/js/owl-carousel/owl.carousel.js"></script>
-        <script type="text/javascript" src="{{url('public/usercss')}}/js/slideshow/jquery.themepunch.revolution.js"></script>
-        <script type="text/javascript" src="{{url('public/usercss')}}/js/slideshow/jquery.themepunch.plugins.min.js"></script>
+        <script type="text/javascript" src="{{url('public/usercss')}}/js/slideshow/jquery.themepunch.revolution.js">
+        </script>
+        <script type="text/javascript" src="{{url('public/usercss')}}/js/slideshow/jquery.themepunch.plugins.min.js">
+        </script>
         <script type="text/javascript" src="{{url('public/usercss')}}/js/theme.js"></script>
     </div>
     <!--end footer-->

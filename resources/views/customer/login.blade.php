@@ -1,8 +1,8 @@
 @extends('master.user')
-@section('title','Đăng nhập')
-@section('content')
-<div class="product-big-title-area">
-    <div class="container">
+@section('title','Đăng Nhập')
+@section('main')
+<div class="container">
+    <div class="product-big-title-area">
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
@@ -13,7 +13,6 @@
     </div>
 </div>
 <div class="container mt mb">
-
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">

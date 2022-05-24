@@ -1,8 +1,8 @@
 @extends('master.user')
 @section('title','Đăng ký')
-@section('content')
-<div class="product-big-title-area">
-    <div class="container">
+@section('main')
+<div class="container">
+    <div class="product-big-title-area">
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
@@ -38,6 +38,7 @@
                     <small class="help-block">{{$message}}</small>
                     @enderror
                 </div>
+                <button type="submit" class="btn btn-success center">Đăng ký</button>
 
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -63,9 +64,9 @@
                     <small class="help-block">{{$message}}</small>
                     @enderror
                 </div>
-                <button type="submit" class="btn btn-success center">Đăng ký</button>
+                <a href="{{route('user.login')}}" class="btn btn-text-light">Về đăng nhập </a>
             </div>
-          
+
         </form>
     </div>
 

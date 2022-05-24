@@ -23,7 +23,7 @@ return [
         'items' => [
            [
             'route'=> 'product.index',
-            'title' => 'Chi tiết Danh Mục'
+            'title' => 'Chi tiết Sản Phẩm'
            ]
         ]
     ],

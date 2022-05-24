@@ -15,7 +15,7 @@ class UserController extends Controller
        return view('user.home',compact('productSale'),compact('productHot'));
    }
    public function shop(){
-       $product = Product::search()->paginate(4);
+       $product = Product::search()->paginate(8);
        return view('user.shop',compact('product'));
    }
    public function category(Category $category){

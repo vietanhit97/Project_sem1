@@ -1,5 +1,5 @@
 <?php
-$menus = config('menu');
+$menus = config('menu'); //config/menu.php duyệt menu
 ?>
 <!DOCTYPE html>
 <html>
@@ -193,7 +193,7 @@ $menus = config('menu');
                 <!-- /.search form -->
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 @foreach($menus as $menu)
-                @if(isset($menu['items']) && count($menu['items']) > 0)
+                @if(isset($menu['items']) && count($menu['items']) > 0) 
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="treeview">
                         <a href="#">
