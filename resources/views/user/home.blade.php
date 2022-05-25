@@ -506,7 +506,7 @@ $tab=0; ?>
                         <div class="slider-inner">
                             <div class="container-slider">
                                 <div class="products-grid">
-                                    @foreach($category->products()->paginate(4) as $product)
+                                    @foreach($category->products()->limit(4)->get() as $product)
                                     <div class="item">
                                         <div class="item-wrap">
                                             <div class="item-image">
