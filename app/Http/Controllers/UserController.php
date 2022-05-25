@@ -12,7 +12,7 @@ class UserController extends Controller
 {
    public function home(Product $product){
         $productSale = $product->orderby('sale_price','desc')->paginate(8);
-        $productHot = $product->orderby('id','desc')->paginate(4);
+        $productHot = $product->orderby('id','desc')->limit(4)->get();
        return view('user.home',compact('productSale'),compact('productHot'));
    }
    public function shop(){

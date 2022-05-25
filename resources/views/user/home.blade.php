@@ -279,98 +279,6 @@ $tab=0; ?>
             </div>
         </div>
     </div>
-    <!-- Khuyễn Mãi -->
-    <div class="position-02">
-        <div class="container">
-            <div class="row">
-                <div class="title-sp">
-                    Khuyễn Mãi
-                    <div class="std">
-                        Giảm giá sốc nhanh tay mua ngay
-                    </div>
-                </div>
-                <div class="block vt-slider vt-slider3">
-                    <div class="slider-inner">
-                        <div class="container-slider">
-                            <div class="products-grid">
-                                @foreach($productSale as $pro)
-                                <div class="item">
-                                    <div class="item-wrap">
-                                        <div class="item-image">
-                                            <a class="product-image no-touch" href="#" title="Ipad Air and iOS7">
-                                                <img class="first_image" src="{{url('public/uploads')}}/{{$pro->image}}"
-                                                    alt="Product demo" />
-                                            </a>
-                                            <div class="item-btn">
-                                                <div class="box-inner">
-                                                    @if(auth()->guard('customer')->check())
-                                                    @if (auth()->guard('customer')->user()->isFavorite($pro->id))
-                                                    <a title="Add to wishlist"
-                                                        href="{{route('user.unfavorite',$pro->id)}}"
-                                                        class="link-wishlist" style="background-color:red">&nbsp;</a>
-                                                    @else
-                                                    <a title="Add to wishlist"
-                                                        href="{{route('user.favorite',$pro->id)}}"
-                                                        class="link-wishlist">&nbsp;</a>
-                                                    @endif
-                                                    @else
-                                                    <a title="Add to wishlist" href="{{route('user.login')}}"
-                                                        class="link-wishlist">&nbsp;</a>
-                                                    @endif
-                                                    <a title="Add to compare" href="#" class="link-compare">&nbsp;</a>
-                                                    <span class="qview">
-                                                        <a class="vt_quickview_handler" data-original-title="Quick View"
-                                                            data-placement="left" data-toggle="tooltip"
-                                                            href="{{route('user.productSingle',['product'=>$pro->id,'slug'=>Str::slug($pro->name)])}}"><span>Quick
-                                                                View</span></a>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <a title="Add to cart" class="btn-cart"
-                                                href="{{route('cart.add',$pro->id)}}">&nbsp;</a>
-                                        </div>
-                                        <div class="pro-info">
-                                            <div class="pro-inner">
-                                                <div class="pro-title product-name"><a href="#">{{$pro->name}}</a></div>
-                                                <div class="pro-content">
-                                                    <div class="wrap-price">
-                                                        <div class="price-box">
-                                                            <span class="regular-price">
-                                                                <span class="price">{{number_format($pro->sale_price)}}
-                                                                    đ</span></span>
-                                                            <p class="special-price">
-                                                                <span class="price">{{number_format($pro->price)}}
-                                                                    đ</span>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="ratings">
-                                                        <div class="rating-box">
-                                                            <div class="rating" style="width:80%"></div>
-                                                        </div>
-                                                        <span class="amount"><a href="#">1(s)</a></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-                        <div class="navslider">
-                            <a class="prev" href="#">Prev</a>
-                            <a class="next" href="#">Next</a>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Hết Khuyễn Mãi -->
     <!-- Mới Nhất -->
     <div class="position-04">
         <div class="container">
@@ -424,7 +332,7 @@ $tab=0; ?>
                                                                 @else
                                                                 <span class="regular-price">
                                                                     <span
-                                                                        class="price">{{number_format($proHot->sale_price)}}
+                                                                        class="price">{{number_format($proHot->price)}}
                                                                         đ</span></span>
                                                                 @endif
                                                             </div>
@@ -484,6 +392,105 @@ $tab=0; ?>
         </div>
     </div>
     <!-- Hết Mới Nhất -->
+    <!-- Khuyễn Mãi -->
+    <div class="position-02">
+        <div class="container">
+            <div class="row">
+                <div class="title-sp">
+                    Khuyễn Mãi
+                    <div class="std">
+                        Giảm giá sốc nhanh tay mua ngay
+                    </div>
+                </div>
+                <div class="block vt-slider vt-slider3">
+                    <div class="slider-inner">
+                        <div class="container-slider">
+                            <div class="products-grid">
+                                @foreach($productSale as $pro)
+                                <div class="item">
+                                    <div class="item-wrap">
+                                        <div class="item-image">
+                                            <a class="product-image no-touch" href="#" title="Ipad Air and iOS7">
+                                                <img class="first_image" src="{{url('public/uploads')}}/{{$pro->image}}"
+                                                    alt="Product demo" />
+                                            </a>
+                                            <div class="item-btn">
+                                                <div class="box-inner">
+                                                    @if(auth()->guard('customer')->check())
+                                                    @if (auth()->guard('customer')->user()->isFavorite($pro->id))
+                                                    <a title="Add to wishlist"
+                                                        href="{{route('user.unfavorite',$pro->id)}}"
+                                                        class="link-wishlist" style="background-color:red">&nbsp;</a>
+                                                    @else
+                                                    <a title="Add to wishlist"
+                                                        href="{{route('user.favorite',$pro->id)}}"
+                                                        class="link-wishlist">&nbsp;</a>
+                                                    @endif
+                                                    @else
+                                                    <a title="Add to wishlist" href="{{route('user.login')}}"
+                                                        class="link-wishlist">&nbsp;</a>
+                                                    @endif
+                                                    <a title="Add to compare" href="#" class="link-compare">&nbsp;</a>
+                                                    <span class="qview">
+                                                        <a class="vt_quickview_handler" data-original-title="Quick View"
+                                                            data-placement="left" data-toggle="tooltip"
+                                                            href="{{route('user.productSingle',['product'=>$pro->id,'slug'=>Str::slug($pro->name)])}}"><span>Quick
+                                                                View</span></a>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <a title="Add to cart" class="btn-cart"
+                                                href="{{route('cart.add',$pro->id)}}">&nbsp;</a>
+                                        </div>
+                                        <div class="pro-info">
+                                            <div class="pro-inner">
+                                                <div class="pro-title product-name"><a href="#">{{$pro->name}}</a></div>
+                                                <div class="pro-content">
+                                                    <div class="wrap-price">
+                                                        <div class="price-box">
+                                                            @if($proHot->sale_price > 0)
+                                                            <span class="regular-price">
+                                                                <span
+                                                                    class="price">{{number_format($pro->sale_price)}}
+                                                                    đ</span></span>
+                                                            <p class="special-price">
+                                                                <span class="price">{{number_format($pro->price)}}
+                                                                    đ</span>
+                                                            </p>
+                                                            @else
+                                                            <span class="regular-price">
+                                                                <span class="price">{{number_format($pro->price)}}
+                                                                    đ</span></span>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="ratings">
+                                                        <div class="rating-box">
+                                                            <div class="rating" style="width:80%"></div>
+                                                        </div>
+                                                        <span class="amount"><a href="#">1(s)</a></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="navslider">
+                            <a class="prev" href="#">Prev</a>
+                            <a class="next" href="#">Next</a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hết Khuyễn Mãi -->
     @foreach ($categories as $category)
     <div class="position-08">
         <div class="container">
@@ -546,30 +553,30 @@ $tab=0; ?>
                                                     <div class="pro-content">
                                                         <div class="wrap-price">
                                                             <div class="price-box">
-                                                                @if($proHot->sale_price > 0)
+                                                                @if($product->sale_price > 0)
                                                                 <span class="regular-price">
                                                                     <span
-                                                                        class="price">{{number_format($proHot->sale_price)}}
+                                                                        class="price">{{number_format($product->sale_price)}}
                                                                         đ</span></span>
                                                                 <p class="special-price">
                                                                     <span
-                                                                        class="price">{{number_format($proHot->price)}}
+                                                                        class="price">{{number_format($product->price)}}
                                                                         đ</span>
                                                                 </p>
                                                                 @else
                                                                 <span class="regular-price">
                                                                     <span
-                                                                        class="price">{{number_format($proHot->sale_price)}}
+                                                                        class="price">{{number_format($product->price)}}
                                                                         đ</span></span>
                                                                 @endif
                                                             </div>
                                                         </div>
-                                                        <!-- <div class="ratings">
+                                                        <div class="ratings">
 												  <div class="rating-box">
 													 <div class="rating" style="width:80%"></div>
 												  </div>
 												  <span class="amount"><a href="#">1(s)</a></span>
-											   </div> -->
+											   </div>
                                                     </div>
                                                 </div>
                                             </div>
