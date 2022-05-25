@@ -303,7 +303,20 @@ $tab=0; ?>
                                             </a>
                                             <div class="item-btn">
                                                 <div class="box-inner">
-                                                    <a title="Add to wishlist" href="#" class="link-wishlist">&nbsp;</a>
+                                                    @if(auth()->guard('customer')->check())
+                                                    @if (auth()->guard('customer')->user()->isFavorite($pro->id))
+                                                    <a title="Add to wishlist"
+                                                        href="{{route('user.unfavorite',$pro->id)}}"
+                                                        class="link-wishlist" style="background-color:red">&nbsp;</a>
+                                                    @else
+                                                    <a title="Add to wishlist"
+                                                        href="{{route('user.favorite',$pro->id)}}"
+                                                        class="link-wishlist">&nbsp;</a>
+                                                    @endif
+                                                    @else
+                                                    <a title="Add to wishlist" href="{{route('user.login')}}"
+                                                        class="link-wishlist">&nbsp;</a>
+                                                    @endif
                                                     <a title="Add to compare" href="#" class="link-compare">&nbsp;</a>
                                                     <span class="qview">
                                                         <a class="vt_quickview_handler" data-original-title="Quick View"
@@ -313,7 +326,8 @@ $tab=0; ?>
                                                     </span>
                                                 </div>
                                             </div>
-                                            <a title="Add to cart" class="btn-cart" href="{{route('cart.add',$pro->id)}}">&nbsp;</a>
+                                            <a title="Add to cart" class="btn-cart"
+                                                href="{{route('cart.add',$pro->id)}}">&nbsp;</a>
                                         </div>
                                         <div class="pro-info">
                                             <div class="pro-inner">
@@ -369,7 +383,8 @@ $tab=0; ?>
                     <ul class="view-more">
                         @foreach($categories as $category)
                         <li class=""><a
-                                href="{{route('user.category',['category'=>$category->id,'slug'=>Str::slug($category->name)])}}"><span>Xem Thêm {{$category->name}}</span></a>
+                                href="{{route('user.category',['category'=>$category->id,'slug'=>Str::slug($category->name)])}}"><span>Xem
+                                    Thêm {{$category->name}}</span></a>
                         </li>
                         @endforeach
                     </ul>
@@ -425,7 +440,20 @@ $tab=0; ?>
                                             </div>
                                             <div class="item-btn">
                                                 <div class="box-inner">
-                                                    <a title="Add to wishlist" href="#" class="link-wishlist">&nbsp;</a>
+                                                    @if(auth()->guard('customer')->check())
+                                                    @if (auth()->guard('customer')->user()->isFavorite($proHot->id))
+                                                    <a title="Add to wishlist"
+                                                        href="{{route('user.unfavorite',$proHot->id)}}"
+                                                        class="link-wishlist" style="background-color:red">&nbsp;</a>
+                                                    @else
+                                                    <a title="Add to wishlist"
+                                                        href="{{route('user.favorite',$proHot->id)}}"
+                                                        class="link-wishlist">&nbsp;</a>
+                                                    @endif
+                                                    @else
+                                                    <a title="Add to wishlist" href="{{route('user.login')}}"
+                                                        class="link-wishlist">&nbsp;</a>
+                                                    @endif
                                                     <a title="Add to compare" href="#" class="link-compare">&nbsp;</a>
                                                     <span class="qview">
                                                         <a class="vt_quickview_handler" data-original-title="Quick View"
@@ -433,7 +461,8 @@ $tab=0; ?>
                                                             href="{{route('user.productSingle',['product'=>$proHot->id,'slug'=>Str::slug($proHot->name)])}}"><span>Quick
                                                                 View</span></a>
                                                     </span>
-                                                    <a title="Add to cart" class="btn-cart" href="{{route('cart.add',$proHot->id)}}">&nbsp;</a>
+                                                    <a title="Add to cart" class="btn-cart"
+                                                        href="{{route('cart.add',$proHot->id)}}">&nbsp;</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -481,8 +510,21 @@ $tab=0; ?>
                                                 </a>
                                                 <div class="item-btn">
                                                     <div class="box-inner">
-                                                        <a title="Add to wishlist" href="#"
+                                                        @if(auth()->guard('customer')->check())
+                                                        @if(auth()->guard('customer')->user()->isFavorite($product->id))
+                                                        <a title="Add to wishlist"
+                                                            href="{{route('user.unfavorite',$product->id)}}"
+                                                            class="link-wishlist"
+                                                            style="background-color:red">&nbsp;</a>
+                                                        @else
+                                                        <a title="Add to wishlist"
+                                                            href="{{route('user.favorite',$product->id)}}"
                                                             class="link-wishlist">&nbsp;</a>
+                                                        @endif
+                                                        @else
+                                                        <a title="Add to wishlist" href="{{route('user.login')}}"
+                                                            class="link-wishlist">&nbsp;</a>
+                                                        @endif
                                                         <a title="Add to compare" href="#"
                                                             class="link-compare">&nbsp;</a>
                                                         <span class="qview">
@@ -494,7 +536,8 @@ $tab=0; ?>
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <a title="Add to cart" class="btn-cart" href="{{route('cart.add',$product->id)}}">&nbsp;</a>
+                                                <a title="Add to cart" class="btn-cart"
+                                                    href="{{route('cart.add',$product->id)}}">&nbsp;</a>
                                             </div>
                                             <div class="pro-info">
                                                 <div class="pro-inner">

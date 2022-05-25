@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Customer;
+use App\Models\Favorite;
 use Illuminate\Http\Request;
 use App\Http\Requests\Customer\CustomerRequestStore as reqCus;
 use App\Http\Requests\Customer\CustomerRequestLogin as reqCusLogin;
@@ -54,5 +55,29 @@ class UserController extends Controller
         auth()->guard('customer')->logout();
         return redirect()->route('user')->with('ok','Đăng xuất thành công !');
     }
+    // yêu thích sản phẩm 
+    
+    public function favorite($id)
+    {
+        Favorite::create([
+           'product_id' => $id,
+           'customer_id' => auth()->guard('customer')->user()->id
+       ]);
+       return redirect()->route('user')->with('ok','Yêu Thích Thành Công ');
+    }
 
+    public function unfavorite($id)
+    {
+        Favorite::where([
+           'product_id' => $id,
+           'customer_id' => auth()->guard('customer')->user()->id
+       ])->delete();
+       return redirect()->route('user')->with('ok',' Bỏ Yêu Thích Thành Công');
+    }
+
+    public function favorites_list()
+    {
+       $products = auth()->guard('customer')->user()->favorites;
+       return view('favorites_list', compact('products'));
+    }
 }
