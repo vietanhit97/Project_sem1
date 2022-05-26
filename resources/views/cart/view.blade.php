@@ -39,16 +39,17 @@
                 <td>{{number_format($pro -> price)}} đ</td>
                 <td>
                     <form action="{{ route('cart.update', $pro->id)}}" method="GET" class="form-inline" role="form">
-
                         <div class="form-group">
-                            <input class="form-control" name="quantity" value="{{$pro->quantity}}">
+                            <input type="number" size="4" class="input-text qty text" title="Qty"
+                                value="{{$pro->quantity}}" name="quantity" min="1" step="1">
                         </div>
                         <button type="submit" class="btn btn-sm btn-success">Cập Nhật</button>
                     </form>
                 </td>
                 <td>{{number_format($pro -> price*$pro->quantity)}}</td>
                 <td>
-                    <a href="{{ route('cart.delete', $pro->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có muốn xóa không ?')"> Xóa</a>
+                    <a href="{{ route('cart.delete', $pro->id) }}" class="btn btn-sm btn-danger"
+                        onclick="return confirm('Bạn có muốn xóa không ?')"> Xóa</a>
                 </td>
                 </td>
             </tr>

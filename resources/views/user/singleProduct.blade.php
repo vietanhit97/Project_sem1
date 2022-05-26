@@ -49,7 +49,7 @@
                                                         @endif
                                                     </div>
 
-                                                    <form action="" class="cart">
+                                                    <form action="{{route('cart.add', $product->id )}}" method="GET" class="cart">
                                                         <div class="quantity">
                                                             <input type="number" size="4" class="input-text qty text"
                                                                 title="Qty" value="1" name="quantity" min="1" step="1">
