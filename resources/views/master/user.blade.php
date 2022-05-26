@@ -26,7 +26,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="logo">
-                                <a href="home-01.html"><img src="{{url('public/usercss')}}/images/logodefault.png"
+                                <a href="#"><img src="{{url('public/usercss')}}/images/logodefault.png"
                                         alt="" /></a>
                             </div>
                             <div class="menu">

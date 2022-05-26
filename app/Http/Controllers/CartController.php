@@ -9,7 +9,7 @@ class CartController extends Controller
 {
     public function add($id, Request $quantity )
     {
-        $quantityProduct = ($quantity -> query('quantity')) ? $quantity -> query('quantity') : 1; 
+        $quantityProduct = $quantity -> query('quantity') ? $quantity -> query('quantity') : 1; 
         $carts = session('cart')  ? session('cart') : [];
         if (isset($carts[$id]) ) {
             $carts[$id]->quantity += $quantityProduct;
