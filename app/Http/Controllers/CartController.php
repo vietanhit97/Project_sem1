@@ -7,11 +7,12 @@ use App\Models\Product;
 
 class CartController extends Controller
 {
-    public function add($id, $quantity = 1)
+    public function add($id, Request $quantity )
     {
+        $quantityProduct = $quantity -> query('quantity') ? $quantity -> query('quantity') : 1; 
         $carts = session('cart')  ? session('cart') : [];
         if (isset($carts[$id]) ) {
-            $carts[$id]->quantity += $quantity;
+            $carts[$id]->quantity += $quantityProduct;
         }
         else {
             $pro = Product::find($id);
@@ -20,7 +21,7 @@ class CartController extends Controller
             $item->name = $pro->name;
             $item->image = $pro->image;
             $item->price = $pro->sale_price > 0 ? $pro->sale_price : $pro->price;
-            $item->quantity = $quantity;
+            $item->quantity = $quantityProduct ;
             $carts[$id] = $item;
         }
         session(['cart' => $carts]);
@@ -34,7 +35,6 @@ class CartController extends Controller
             $carts[$id]->quantity = $quantity;
             session(['cart' => $carts]);
         }
-
         return redirect()->route('cart.view');
     }
 

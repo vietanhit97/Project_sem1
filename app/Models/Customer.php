@@ -32,5 +32,32 @@ class Customer extends Authenticatable
         $data['password'] = bcrypt(request()->password);
         return $this->create($data);
     }
+    
+    public function isFavorite($product_id)
+    {
+        // if (auth()->guard('customer')->check()) {
+        //     $userId = auth()->guard('customer')->user()->id;
+        //     $favorited = Favorite::where([
+        //         'customer_id'=> $userId, 
+        //         'product_id' => $product_id
+        //     ])->first();
+        //     return $favorited;
+        // }
+        return $this->hasOne(Favorite::class, 'customer_id','id')->where('product_id', $product_id)->first();
+        return false;
+    }
 
+    // JOIN 3 bang
+    // customers - favorites - products
+    /**
+     * customers -> id
+     * products  -> id
+     * favorites
+     *      customer_id
+     *      product_id
+     */
+    public function favorites()
+    {
+        return $this->belongsToMany(Product::class,'favotites');
+    }
 }

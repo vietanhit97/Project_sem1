@@ -54,6 +54,9 @@ Route::group(['prefix'=>'user'], function(){ //group truyền 2 tham sô : mản
     Route::get('shop',[UserController::class,'shop'])->name('user.shop');
     Route::get('/{category}-{slug}',[UserController::class,'category'])->name('user.category');
     Route::get('san-pham/{product}-{slug}',[UserController::class,'productSingle'])->name('user.productSingle');
+    Route::get('yeu-thich/{id}', [UserController::class, 'favorite'])->name('user.favorite');
+    Route::get('bo-yeu-thich/{id}', [UserController::class, 'unfavorite'])->name('user.unfavorite');
+    Route::get('customer/san-pham-yeu-thich', [UserController::class, 'favorite_list'])->name('user.product_favorite');
 });
 
 Route::group(['prefix' => 'cart'], function() {

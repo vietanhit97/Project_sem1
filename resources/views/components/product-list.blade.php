@@ -37,11 +37,24 @@
                         </a>
                         <div class="item-btn">
                             <div class="box-inner">
-                                <a title="Add to wishlist" href="#" class="link-wishlist">&nbsp;</a>
+                                @if(auth()->guard('customer')->check())
+                                       @if (auth()->guard('customer')->user()->isFavorite($pro->id))
+                                        <a title="Add to wishlist" href="{{route('user.unfavorite',$pro->id)}}"
+                                            class="link-wishlist" style="background-color:red">&nbsp;</a>
+                                    @else
+                                         <a title="Add to wishlist" href="{{route('user.favorite',$pro->id)}}"
+                                            class="link-wishlist" >&nbsp;</a> 
+                                    @endif
+                                @else
+                                <a title="Add to wishlist" href="{{route('user.login')}}"
+                                    class="link-wishlist">&nbsp;</a>
+                                @endif
                                 <a title="Add to compare" href="#" class="link-compare">&nbsp;</a>
                                 <span class="qview"><a href="#"></a>
                                     <a class="vt_quickview_handler" data-original-title="Quick View"
-                                        data-placement="left" data-toggle="tooltip" href="{{Route('user.productSingle',['product'=>$pro->id,'slug'=>Str::slug($pro->name)])}}"><span>Quick View</span></a>
+                                        data-placement="left" data-toggle="tooltip"
+                                        href="{{Route('user.productSingle',['product'=>$pro->id,'slug'=>Str::slug($pro->name)])}}"><span>Quick
+                                            View</span></a>
                                 </span>
                             </div>
                         </div>
@@ -62,9 +75,9 @@
                                         </p>
                                         @else
                                         <span class="regular-price">
-                                            <span class="price">{{number_format($pro->price)}} đ</span></span>
+                                            <span class="price " >{{number_format($pro->price)}} đ</span></span>
                                         <p class="special-price">
-                                            <span class="price">0
+                                            <span class="price " >0
                                                 đ</span>
                                         </p>
                                         @endif

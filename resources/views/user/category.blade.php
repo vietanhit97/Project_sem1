@@ -72,7 +72,7 @@
                                 <dd class="tabcontent3">
                                     <ol>
                                         @foreach($categories as $category)
-                                        <li><a href="grid4b22.html?manufacturer=11">{{$category->name}}
+                                        <li><a href="{{route('user.category',['category'=>$category->id,'slug'=>Str::slug($category->name)])}}">{{$category->name}}
                                             </a>({{$category->products()->count()}})</li>
                                         @endforeach
                                     </ol>
