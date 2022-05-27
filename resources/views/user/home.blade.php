@@ -28,28 +28,41 @@ $tab=0; ?>
                 <div class="box-1">
                     <h2>Nổi Bật</h2>
                     <ul class="control">
-                        @foreach($categories as $category)
-                        <li data-rel="{{$px-=852}}px" class="{{'ct'.$tab += 1}}">{{$category->name}}</li>
+                        @foreach($categories as $key => $category)
+                        <li data-rel="{{$px-=852}}px" class="{{'ct'.$key += 1}}">{{$category->name}}</li>
                         @endforeach
                     </ul>
                 </div>
                 <div class="box-2">
                     <div class="slide">
+                        @foreach($categories as $key1 => $cat)
                         <div class="item">
                             <div class="box-image">
-                                <a href="#"><img src="{{url('public/usercss')}}/images/product/larg/air-a4.jpg"
+                                <a href="#"><img src="{{url('public/uploads')}}/{{$cat->product->image}}" class="w-100"
                                         alt="" /></a>
                             </div>
                             <div class="product-shop">
                                 <div class="pro-info">
                                     <div class="pro-inner">
-                                        <div class="pro-title product-name"><a href="detail.html">Ipad Air and iOS7</a>
+                                        <div class="pro-title product-name"><a
+                                                href="detail.html">{{$cat->product ? $cat->product->name : ''}}</a>
                                         </div>
                                         <div class="pro-content">
                                             <div class="wrap-price">
                                                 <div class="price-box">
+                                                    @if($cat->product->sale_price > 0)
                                                     <span class="regular-price">
-                                                        <span class="price">$800.00</span></span>
+                                                        <span class="price">{{number_format($cat->product->sale_price)}}
+                                                            đ</span></span>
+                                                    <p class="special-price">
+                                                        <span class="price">{{number_format($cat->product->price)}}
+                                                            đ</span>
+                                                    </p>
+                                                    @else
+                                                    <span class="regular-price">
+                                                        <span class="price">{{number_format($cat->product->price)}}
+                                                            đ</span></span>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="ratings">
@@ -60,11 +73,6 @@ $tab=0; ?>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="std">
-                                    Cras id leo aliquet, dictum orci at, varius ligula. Duis aliquet pellentesque
-                                    tincidunt. Vestibulum finibus augue sit amet ex elementum, non consequat libero
-                                    mattis.
                                 </div>
                                 <div class="item-btn">
                                     <div class="box-inner">
@@ -80,8 +88,8 @@ $tab=0; ?>
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
-                    
                 </div>
             </div>
         </div>

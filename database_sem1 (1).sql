@@ -344,3 +344,8 @@ ALTER TABLE `order_details`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `product_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
+
+
+
+
+
