@@ -16,7 +16,6 @@
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans" media="all" />
     <title>@yield('title')</title>
 </head>
-
 <body class="home">
     <!--begin header-->
     <div id="box-header">
