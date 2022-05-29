@@ -9,13 +9,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="{{url('public/usercss')}}/style/css/style-main.css"/>
+    <link rel="stylesheet" type="text/css" href="{{url('public/usercss')}}/style/css/style-main.css" />
     <link rel="stylesheet" href="{{url('public/css_detal')}}/style.css">
     <link rel="stylesheet" href="{{url('public/css_detal')}}/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{url('public/css_detal')}}/css/css.css">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans" media="all" />
     <title>@yield('title')</title>
 </head>
+
 <body class="home">
     <!--begin header-->
     <div id="box-header">
@@ -25,8 +26,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="logo">
-                                <a href="#"><img src="{{url('public/usercss')}}/images/logodefault.png"
-                                        alt="" /></a>
+                                <a href="#"><img src="{{url('public/usercss')}}/images/logodefault.png" alt="" /></a>
                             </div>
                             <div class="menu">
                                 <div class="box-main-menu">
@@ -98,9 +98,9 @@
                                         </ul>
                                         <ul class="right">
                                             <li class="language">
-                                                <a href="#" class="selected"><img
-                                                        src="{{url('public/usercss')}}/images/flags/flag-french.jpg"
-                                                        alt="" />French</a>
+                                                <a href="#" class="selected"><img width = "16px"
+                                                        src="{{url('public/usercss')}}/images/flags/vietnam-flag-xs.jpg"
+                                                        alt="" />VNA</a>
                                                 <ul>
                                                     <li>
                                                         <a href="home-01.html"><img
@@ -108,16 +108,16 @@
                                                                 alt="" />English</a>
                                                     </li>
                                                     <li>
-                                                        <a href="home-02.html"><img
-                                                                src="{{url('public/usercss')}}/images/flags/flag-french.jpg"
-                                                                alt="" />French</a>
+                                                        <a href="home-02.html"><img width = "16px"
+                                                                src="{{url('public/usercss')}}/images/flags/vietnam-flag-xs.jpg"
+                                                                alt="" />VNA</a>
                                                     </li>
                                                 </ul>
                                             </li>
                                             <li class="monney last"><a href="#" class="selected">VNĐ</a>
                                                 <ul>
-                                                    <li><a href="#"><span>₫</span> VNĐ</a></li>
                                                     <li><a href="#"><span>$</span> USD</a></li>
+                                                    <li><a href="#"><span>₫</span> VNĐ</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -126,49 +126,67 @@
                                 </div>
                                 <div class="box-cart">
                                     <div class="cart-mini">
+                                        @if (count($cart->items))
                                         <div class="title">
-                                            <span class="item">0</span>
+                                            <span class="item" style="color:yellow">{{$cart->totalQuantity}}</span>
                                         </div>
                                         <div class="block-content">
                                             <div class="inner">
-                                                <p class="block-subtitle">Recently added item(s)</p>
+                                                <p class="block-subtitle">Giỏ Hàng</p>
                                                 <ol id="cart-sidebar" class="mini-products-list">
                                                     <li class="item">
-                                                        <a href="#" title="Fashion Product 09" class="product-image">
-                                                            <img src="{{url('public/usercss')}}/images/product/small/image-demo-1.jpg"
+                                                        @foreach($cart->items as $item)
+                                                        <a href="#" title="Fashion Product 09" class="product-image"
+                                                            width="20px">
+                                                            <img src="{{url('public/uploads')}}/{{$item->image}}"
                                                                 alt="Fashion Product 09" />
                                                         </a>
-                                                        <a href="#" class="btn-remove">Remove This Item</a>
-                                                        <a href="#" title="Edit item" class="btn-edit">Edit item</a>
                                                         <div class="product-details">
                                                             <p class="product-name"><a title="Fashion Product 09"
-                                                                    href="#">Fashion Product 09</a></p>
-                                                            <span class="price">$200.00</span>
+                                                                    href="#">{{$item->name}}</a></p>
+                                                            <span class="price">{{$item->price}}</span>
                                                             <div class="qty-abc">
                                                                 <a title="Decrement" class="qty-change-left"
                                                                     href="#">down</a>
                                                                 <input class="input-text qty" type="text" value="1" />
                                                                 <a title="Increment" class="qty-change-right"
                                                                     href="#">up</a>
+                                                                <a href="#" class="btn-remove"></a>
                                                             </div>
                                                         </div>
+                                                        @endforeach
                                                     </li>
                                                 </ol>
                                                 <div class="summary">
                                                     <p class="subtotal">
-                                                        <span class="label">Subtotal:</span> <span
-                                                            class="price">$200.00</span>
+                                                        <span class="label">Tông Tiền:
+                                                            {{number_format ($cart->totalAmount)}} đ</span> <span
+                                                            class="price"></span>
                                                     </p>
                                                 </div>
                                                 <div class="actions">
                                                     <div class="a-inner">
-                                                        <a class="btn-mycart" href="#" title="View my cart">view my
-                                                            cart</a>
-                                                        <a href="#" title="Checkout" class="btn-checkout">Checkout</a>
+                                                        <a class="btn-mycart" href="{{route('cart.view')}}"
+                                                            title="View my cart">Chi tiết</a>
+                                                        <a href="#" title="Checkout" class="btn-checkout">Thanh Toán</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        @else
+                                        <div class="title">
+                                            <span class="item" style="color:yellow">0</span>
+                                        </div>
+                                        <div class="block-content">
+                                            <div class="inner">
+                                                <div class="alert alert-danger mt">
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                        aria-hidden="true">&times;</button>
+                                                    <strong>Giỏ hàng</strong> Không có dữ liệu nào...
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -269,13 +287,21 @@
                         </div>
                         <div class="block block-customer col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="block-title"><span>Khách Hàng</span></div>
+                            @if(auth()->guard('customer')->check())
                             <div class="block-content">
                                 <ul>
                                     <li><a href="#">Tài Khoản </a></li>
-                                    <li><a href="#">Giỏ hàng</a></li>
+                                    <li><a href="{{route('cart.view')}}">Giỏ hàng</a></li>
                                     <li><a href="#">Lịch sử mua hàng</a></li>
                                 </ul>
                             </div>
+                            @else
+                            <div class="block-content">
+                                <ul>
+                                    <li><a href="{{route('user.login')}}">Đăng Nhập</a></li>
+                                </ul>
+                            </div>
+                            @endif
                         </div>
                         <div class="block block-cu col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="block-title"><span>Chăm sóc khách hàng</span></div>

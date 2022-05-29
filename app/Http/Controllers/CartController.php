@@ -4,54 +4,32 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Cart;
+
 
 class CartController extends Controller
 {
-    public function add($id, Request $quantity )
+    public function add($id, Cart $cart )
     {
-        $quantityProduct = $quantity -> query('quantity') ? $quantity -> query('quantity') : 1; 
-        $carts = session('cart')  ? session('cart') : [];
-        if (isset($carts[$id]) ) {
-            $carts[$id]->quantity += $quantityProduct;
-        }
-        else {
-            $pro = Product::find($id);
-            $item = new \stdClass();
-            $item->id = $pro->id;
-            $item->name = $pro->name;
-            $item->image = $pro->image;
-            $item->price = $pro->sale_price > 0 ? $pro->sale_price : $pro->price;
-            $item->quantity = $quantityProduct ;
-            $carts[$id] = $item;
-        }
-        session(['cart' => $carts]);
-        return redirect()->route('cart.view');
-    }
-    public function update($id)
-    {
+        $pro = Product::find($id);
         $quantity = request('quantity',1);
-        $carts = session('cart')  ? session('cart') : [];
-        if (isset($carts[$id]) ) {
-            $carts[$id]->quantity = $quantity;
-            session(['cart' => $carts]);
-        }
+        $cart->add($pro, $quantity);
+        return redirect()->route('cart.view');
+    }
+    public function update($id, Cart $cart )
+    {
+        $cart -> update($id, $cart);
         return redirect()->route('cart.view');
     }
 
-    public function delete($id)
+    public function delete($id, Cart $cart)
     {
-        $carts = session('cart')  ? session('cart') : [];
-        if (isset($carts[$id]) ) {
-            unset($carts[$id]);
-            session(['cart' => $carts]);
-        }
-
-        return redirect()->route('cart.view');
+        $cart -> removeItem($id);
+        return redirect()->route('cart.view')->with('ok','Xóa sản phẩm thành công !');
     }
-    public function clear()
-    {
+    public function clear(){
         session(['cart' => null]);
-        return redirect()->route('cart.view');
+        return redirect()->route('cart.view')->with('ok','Xóa giỏ hàng thành công !');
     }
 
     public function view()

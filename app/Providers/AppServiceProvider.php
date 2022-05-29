@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use App\Models\Category;
+use App\Models\Cart;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -26,8 +28,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
         view()->composer('*', function($view) {
+            $cart = new Cart;
             $categories = Category::orderBy('name','ASC')->where('status', 0)->get();
-            $view->with(compact('categories'));
+            $view->with(compact('categories','cart'));   // dùng cho tất cả các wiew giỏ hàng và danh mục
         });
     }
 }
