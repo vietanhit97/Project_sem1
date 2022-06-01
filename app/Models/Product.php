@@ -21,21 +21,8 @@ class Product extends Model
     }
     return $query;
     }
-    public function scopeAdd(){
-        $ext = request()->upload->extension(); // lấy đuôi ảnh kiểu jpg,
-        $file_name = time() . '.' . $ext; // tên ảnh theo thơi gian time () 
-        request()->upload->move(public_path('uploads'), $file_name); // lưu ảnh vao thư mục 
-        $data=request()->only('name','price','sale_price','category_id','description','image');
-        $data['image'] = $file_name; // phải để dưới $req->only('name','price','sale_price','category_id','description','image');
-        return $this->create($data);
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class, 'product_id','id');
     }
-    public function scopeUpdateProduct(){
-        $ext = request()->upload->extension(); // lấy đuôi ảnh kiểu jpg,
-        $file_name = time() . '.' . $ext; // tên ảnh theo thơi gian time () 
-        request()->upload->move(public_path('uploads'), $file_name); // lưu ảnh vao thư mục 
-        $data = request()->only('name','price','sale_price','category_id','description','image');
-        $data['image'] = $file_name; // phải để dưới $req->only('name','price','sale_price','category_id','description','image');
-        return $this->update($data);
-    }
- 
 }

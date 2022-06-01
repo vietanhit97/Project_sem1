@@ -28,7 +28,6 @@ class ProductRequestUpdate extends FormRequest
             'price'=> 'required',
             'category_id' => 'required',
             'upload' => [
-                'required',
                 'mimes:jpeg,jpg,png,gif' // đuôi ảnh 
             ]
         ];
@@ -39,7 +38,6 @@ class ProductRequestUpdate extends FormRequest
             'name.unique' => 'Tên đã tồn tại',
             'category_id' => 'Danh muc không được để trống',
             'price.required' => 'Giá không được để trống',
-            'upload.required' => 'Ảnh không được để trống',
             'upload.mimes' => 'Định dạng file : jpeg,jpg,png,gif '
         ];
     }

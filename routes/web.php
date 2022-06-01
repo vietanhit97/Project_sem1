@@ -46,7 +46,8 @@ use App\Http\Controllers\CartController;
         Route::get('delete/trashed',[ProductController::class,'trashed'])->name('product.trashed');
         Route::get('show-product/{product}',[ProductController::class,'show'])->name('product.show');
         Route::get('restore/{product}',[ProductController::class,'restore'])->name('product.restore');
-        Route::delete('force-delete/{product}',[ProductController::class,'restore'])->name('product.forceDelete');
+        Route::delete('force-delete/{product}',[ProductController::class,'forceDelete'])->name('product.forceDelete');
+        Route::get('delete-image/{image}',[ProductController::class,'deleteImage'])->name('product.deleteImage');
     });
 });
 Route::group(['prefix'=>'user'], function(){ //group truyền 2 tham sô : mảng và function
@@ -65,5 +66,4 @@ Route::group(['prefix' => 'cart'], function() {
     Route::get('/delete/{id}', [CartController::class, 'delete'])->name('cart.delete');
     Route::get('/clear', [CartController::class, 'clear'])->name('cart.clear');
     Route::get('/view', [CartController::class, 'view'])->name('cart.view');
-
 }); 

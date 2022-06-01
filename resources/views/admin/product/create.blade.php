@@ -56,7 +56,14 @@
                 <small class="help-block">{{$message}}</small>
                 @enderror
             </div>
-
+            <div class="form-group">
+                <label for="">Ảnh Khác </label>
+                <input type="file" class="form-control" name="uploads[]" id="uploads" multiple accept="image/*"/>
+                <img src="" id="show_images" alt="" style="width:30%">
+                @error('upload')
+                <small class="help-block">{{$message}}</small>
+                @enderror
+            </div>
             <div class="form-group">
                 <label for="">Trạng Thái</label>
                 <div class="radio">
