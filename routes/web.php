@@ -5,18 +5,9 @@ use App\Http\Controllers\UserController;//lấy bên namespace HomeController
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CustomerController;
 
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
  // khai báo router 
  Route::get('admin/login',[AdminController::class,'login'])->name('admin.login'); // giao diện đăng nhập admin
  Route::post('admin/login',[AdminController::class,'check_login']); // gửi dữ liệu form check
@@ -36,6 +27,7 @@ use App\Http\Controllers\CartController;
     Route::resources([  // cmd : php artisan route:list 
         'category'=> CategoryController::class,
         'product'=> ProductController::class,
+        'customer'=> CustomerController::class,
     ]);
     Route::group(['prefix'=>'category'], function(){
         Route::get('delete/trashed',[CategoryController::class,'trashed'])->name('category.trashed');
@@ -49,6 +41,13 @@ use App\Http\Controllers\CartController;
         Route::delete('force-delete/{product}',[ProductController::class,'forceDelete'])->name('product.forceDelete');
         Route::get('delete-image/{image}',[ProductController::class,'deleteImage'])->name('product.deleteImage');
     });
+
+    Route::group(['prefix'=>'customer'], function(){
+        Route::get('delete/trashed',[CustomerController::class,'trashed'])->name('customer.trashed');
+        Route::get('restore/{customer}',[CustomerController::class,'restore'])->name('customer.restore');
+        Route::delete('force-delete/{customer}',[CustomerController::class,'forceDelete'])->name('customer.forceDelete');
+    }); 
+
 });
 Route::group(['prefix'=>'user'], function(){ //group truyền 2 tham sô : mảng và function
     Route::get('',[UserController::class,'home'])->name('user');
