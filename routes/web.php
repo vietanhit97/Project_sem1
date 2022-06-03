@@ -66,4 +66,5 @@ Route::group(['prefix' => 'cart'], function() {
     Route::get('/delete/{id}', [CartController::class, 'delete'])->name('cart.delete');
     Route::get('/clear', [CartController::class, 'clear'])->name('cart.clear');
     Route::get('/view', [CartController::class, 'view'])->name('cart.view');
+
 }); 

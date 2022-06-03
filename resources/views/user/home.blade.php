@@ -80,7 +80,7 @@ $tab=0; ?>
                                         <a title="Add to compare" href="#" class="link-compare">&nbsp;</a>
                                         <span class="qview">
                                             <a class="vt_quickview_handler" data-original-title="Quick View"
-                                                data-placement="left" data-toggle="tooltip" href="#"><span>Quick
+                                                data-placement="left" data-toggle="tooltip" href="{{route('user.productSingle',['product'=>$cat->product->id,'slug'=>Str::slug('$cat->product->name')])}}"><span>Quick
                                                     View</span></a>
                                         </span>
                                         <a title="Add to cart" class="btn-cart" href="#">Add to Cart</a>
