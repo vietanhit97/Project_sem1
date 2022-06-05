@@ -68,7 +68,7 @@
     <a href="{{route('user')}}" class="btn btn-primary">Tiếp tục mua hàng</a>
     <a href="{{route('cart.clear')}}" class="btn btn-danger" onclick="return confirm('bạn có chắc muốn xóa')">Xóa
         hết</a>
-    <a href="{{route('user')}}" class="btn btn-success">Đặt hàng ngay</a>
+    <a href="{{route('customer.checkout')}}" class="btn btn-success">Đặt hàng ngay</a>
 
     @else
     <div class="alert alert-danger mt">

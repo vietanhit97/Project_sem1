@@ -49,7 +49,10 @@ class Cart {
 
     }
 
-
+    public function clear()
+    {
+        session(['cart' => null]);
+    }
 
     private function getQuantity() {
         $total = 0;
@@ -72,4 +75,4 @@ class Cart {
 }
 
 
-?> 
+?>
