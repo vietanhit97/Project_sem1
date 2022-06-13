@@ -215,6 +215,7 @@ $menus = config('menu'); //config/menu.php duyệt menu
                             <i class="fa {{$menu['icon']}}"></i> <span>{{$menu['title']}}</span>
                         </a>
                     </li>
+                    
                     @endif
                 </ul>
                 @endforeach

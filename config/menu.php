@@ -27,5 +27,27 @@ return [
            ]
         ]
     ],
+    [
+        'route' => 'customer.index',
+        'title' => 'Khách Hàng',
+        'icon' => 'fa fa-users',
+        'items' => [
+           [
+            'route'=> 'customer.index',
+            'title' => 'Chi tiết khách hàng'
+           ]
+        ]
+    ],
+    [
+        'route' => 'customer.index',
+        'title' => 'Đơn hàng',
+        'icon' => 'fa fa-building',
+        'items' => [
+           [
+            'route'=> 'customer.index',
+            'title' => 'Chi tiết đơn hàng'
+           ]
+        ]
+    ],
 ];
 ?>

@@ -7,15 +7,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+
+
 class Customer extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable,HasFactory,SoftDeletes;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    protected $table = 'customers';
+
     protected $fillable = [
         'name', 'email', 'password','phone','address'
     ];
@@ -60,4 +62,15 @@ class Customer extends Authenticatable
     {
         return $this->belongsToMany(Product::class,'favotites');
     }
+    public function scopeSearch($query) // scopeSearch viết bên controller bỏ scope viết thương search
+    {
+        if (request('key')) {
+            $key = request('key');
+            $query = $query->where('name','like','%'.$key.'%');
+        }
+        return $query;
+    }
+   
+
+    
 }
