@@ -63,14 +63,15 @@
                                         @if(auth()->guard('customer')->check())
                                         <ul class="left">
                                             <li><a class="top-link-myaccount" href="#">Thông Tin</a></li>
-                                            <li><a class="top-link-wishlist" href="#">Yêu Thích</a></li>
+                                            <li><a class="top-link-wishlist" href="{{route('user.product_favorite')}}">Yêu Thích</a></li>
+                                            <li><a class="top-link-wishlist" href="{{route('customer.order')}}">Lịch sử </a></li>
                                             <li><a class="top-link-login" href="{{route('user.logout')}}">Thoát</a></li>
                                         </ul>
                                         <ul class="right">
                                             <li class="language">
-                                                <a href="#" class="selected"><img
-                                                        src="{{url('public/usercss')}}/images/flags/flag-french.jpg"
-                                                        alt="" />French</a>
+                                                <a href="#" class="selected" ><img
+                                                        src="{{url('public/usercss')}}/images/flags/vietnam-flag-xs.jpg" width= "16px"
+                                                        alt="" />VNA</a>
                                                 <ul>
                                                     <li>
                                                         <a href="home-01.html"><img
@@ -79,8 +80,8 @@
                                                     </li>
                                                     <li>
                                                         <a href="home-02.html"><img
-                                                                src="{{url('public/usercss')}}/images/flags/flag-french.jpg"
-                                                                alt="" />French</a>
+                                                                src="{{url('public/usercss')}}/images/flags/vietnam-flag-xs.jpg" width= "16px"
+                                                                alt="" />VNA</a>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -357,7 +358,5 @@
     </div>
     <!--end footer-->
 </body>
-
-<!-- Mirrored from demo.7uptheme.com/html/mello/home-01.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 25 Jul 2015 06:56:21 GMT -->
 
 </html>

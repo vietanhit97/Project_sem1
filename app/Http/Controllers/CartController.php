@@ -9,24 +9,27 @@ use App\Models\Cart;
 
 class CartController extends Controller
 {
-    public function add($id, Cart $cart )
+    public function add(Cart $cart, $id )
     {
         $pro = Product::find($id);
         $quantity = request('quantity',1);
         $cart->add($pro, $quantity);
         return redirect()->route('cart.view');
     }
-    public function update($id, Cart $cart )
+
+    public function update(Cart $cart, $id)
     {
-        $cart -> update($id, $cart);
+        $quantity = request('quantity',1);
+        $cart->updateItem($id, $quantity);
         return redirect()->route('cart.view');
     }
 
-    public function delete($id, Cart $cart)
+    public function delete(Cart $cart,$id)
     {
         $cart -> removeItem($id);
         return redirect()->route('cart.view')->with('ok','Xóa sản phẩm thành công !');
     }
+    
     public function clear(){
         session(['cart' => null]);
         return redirect()->route('cart.view')->with('ok','Xóa giỏ hàng thành công !');

@@ -20,14 +20,12 @@ use App\Http\Controllers\CustomerController;
  Route::get('logout',[UserController::class,'logout'])->name('user.logout'); // thoát
 
 
-
-
- Route::group(['prefix'=>'admin','middleware' => 'auth'], function(){ //group truyền 2 tham sô : mảng và function ,'middleware' => 'auth' đăng nhâoj
+Route::group(['prefix'=>'admin','middleware' => 'auth'], function(){ //group truyền 2 tham sô : mảng và function ,'middleware' => 'auth' đăng nhâoj
     Route::get('',[AdminController::class,'dashboard'])->name('admin');
     Route::resources([  // cmd : php artisan route:list 
         'category'=> CategoryController::class,
         'product'=> ProductController::class,
-        'customer'=> CustomerController::class,
+        'customer' => CustomerController::class,
     ]);
     Route::group(['prefix'=>'category'], function(){
         Route::get('delete/trashed',[CategoryController::class,'trashed'])->name('category.trashed');
@@ -41,7 +39,6 @@ use App\Http\Controllers\CustomerController;
         Route::delete('force-delete/{product}',[ProductController::class,'forceDelete'])->name('product.forceDelete');
         Route::get('delete-image/{image}',[ProductController::class,'deleteImage'])->name('product.deleteImage');
     });
-
     Route::group(['prefix'=>'customer'], function(){
         Route::get('delete/trashed',[CustomerController::class,'trashed'])->name('customer.trashed');
         Route::get('restore/{customer}',[CustomerController::class,'restore'])->name('customer.restore');
@@ -65,4 +62,13 @@ Route::group(['prefix' => 'cart'], function() {
     Route::get('/delete/{id}', [CartController::class, 'delete'])->name('cart.delete');
     Route::get('/clear', [CartController::class, 'clear'])->name('cart.clear');
     Route::get('/view', [CartController::class, 'view'])->name('cart.view');
+
 });
+
+Route::group(['prefix' => 'customer'], function() {
+    Route::get('/checkout', [CustomerController::class, 'checkout'])->name('customer.checkout');
+    Route::post('/checkout', [CustomerController::class, 'post_checkout']);
+    Route::get('/checkout-ok', [CustomerController::class, 'checkout_ok'])->name('checkout-ok');
+    Route::get('/orders', [CustomerController::class, 'orders'])->name('customer.order');
+}); 
+

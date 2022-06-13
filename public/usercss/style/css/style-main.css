@@ -7,6 +7,7 @@ Last change:	15/07/2015 [fixed Float bug, vf]
 Assigned to:	7up theme
 Primary use:	admin 
 -------------------------------------------------------------------*/
+
 @import "../bootstrap/css/bootstrap.min.css";
 @import "blueimp-gallery.min.css";
 @import "bootstrap-image-gallery.css";

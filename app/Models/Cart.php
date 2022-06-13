@@ -5,12 +5,12 @@ class Cart {
     public $items = [];
     public $totalQuantity = 0;
     public $totalAmount = 0;
-
     public function __construct()
     {
         $this->items = session('cart') ? session('cart') : [];
         $this->totalQuantity = $this->getQuantity();
         $this->totalAmount = $this->getAmount();
+     
     }
 
     public function add($pro, $quantity = 1)
@@ -27,13 +27,12 @@ class Cart {
             $item->quantity = $quantity;
             $this->items[$pro->id] = $item;
         }
-
+       
         session(['cart' => $this->items]);
     }
 
     public function removeItem($id)
     {
-
         if (isset($this->items[$id]) ) {
             unset($this->items[$id]);
             session(['cart' => $this->items]);
@@ -46,10 +45,12 @@ class Cart {
             $this->items[$id]->quantity = $quantity;
             session(['cart' => $this->items]);
         }
-
     }
 
-
+    public function clear()
+    {
+        session(['cart' => null]);
+    }
 
     private function getQuantity() {
         $total = 0;
@@ -59,11 +60,10 @@ class Cart {
 
         return $total;
     }
-
-
     public function getAmount()
     {
         $total = 0;
+        
         foreach($this->items as $item) {
             $total += $item->quantity * $item->price;
         }
@@ -72,4 +72,4 @@ class Cart {
 }
 
 
-?> 
+?>

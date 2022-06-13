@@ -71,6 +71,10 @@ class Customer extends Authenticatable
         return $query;
     }
    
+    public function orders()
+    {
+        return $this->hasMany(Order::class,'customer_id','id');
+    }
 
     
 }
