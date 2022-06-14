@@ -80,4 +80,26 @@ class UserController extends Controller
        $products = auth()->guard('customer')->user()->favorites;
        return view('favorites_list', compact('products'));
     }
+    //sắp xếp sản phẩm
+    public function ascending(){
+        $productAscending = Product::search()-> orderBy('price', 'asc')->paginate(8);
+        return view('user.shop-tang-dan', compact('productAscending'));
+    }
+    public function decrease(){
+        $productDecrease = Product::search()-> orderBy('price', 'desc')->paginate(8);
+        return view('user.shop-giam-dan', compact('productDecrease'));
+    }
+    public function sort_name(){
+        $productSortName = Product::search()-> orderBy('name', 'asc')->paginate(8);
+        return view('user.sap-xep-ten', compact('productSortName'));
+    }
+    public function sort_name_desc(){
+        $productSortNameDesc = Product::search()-> orderBy('name', 'desc')->paginate(8);
+        return view('user.sap-xep-ten-desc', compact('productSortNameDesc'));
+    }
+    // tim kiếm sản phẩm 
+    public function search(Request $req){
+        $product = Product::search()->paginate(8);
+        return view('user.search',compact('product'));
+    }
 }

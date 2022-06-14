@@ -15,14 +15,16 @@ class Product extends Model
     }
     public function scopeSearch($query)
     {   
-    if(request('key')){
+        if(request('key')){
         $key = request('key');
         $query=$query->where('name','like','%'.$key.'%');
-    }
-    return $query;
+        }
+            return $query;
     }
     public function images()
     {
         return $this->hasMany(ProductImage::class, 'product_id','id');
     }
+    
+    
 }

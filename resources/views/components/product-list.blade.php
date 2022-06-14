@@ -13,12 +13,12 @@
                             <div class="selected-order"></div>
                             <ul class="select-order">
                                 <li><a href="#" class="selected">Sắp Xếp</a></li>
-                                <li><a href="">Từ A -> Z</a></li>
-                                <li><a href="">Giá Tăng Dần </a></li>
-                                <li><a href="">Giá Giảm Dần </a></li>
+                                <li><a href="{{route('user.sort_name')}}">Từ A -> Z</a></li>
+                                <li><a href="{{route('user.ascending')}}">Giá Tăng Dần </a></li>
+                                <li><a href="{{route('user.decrease')}}">Giá Giảm Dần </a></li>
                             </ul>
                         </div>
-                        <a class="desc" href="grid00ea.html?dir=desc&amp;order=position"
+                        <a class="desc" href="{{route('user.sort_name_desc')}}"
                             title="Set Descending Direction">
                             <!--<img src="" alt="" class="v-middle" />-->
                         </a>

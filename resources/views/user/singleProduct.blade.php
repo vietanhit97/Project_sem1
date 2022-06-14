@@ -96,7 +96,7 @@
                                                                         <textarea name="review" id="" cols="30"
                                                                             rows="10"></textarea>
                                                                     </p>
-                                                                    <p><input type="submit" value="Submit"></p>
+                                                                    <p><input type="submit" value="Đánh Giá"></p>
                                                                 </div>
                                                             </div>
                                                         </div>

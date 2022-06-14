@@ -49,6 +49,13 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function(){ //group tru
 Route::group(['prefix'=>'user'], function(){ //group truyền 2 tham sô : mảng và function
     Route::get('',[UserController::class,'home'])->name('user');
     Route::get('shop',[UserController::class,'shop'])->name('user.shop');
+    Route::get('tang-dan',[UserController::class,'ascending'])->name('user.ascending');
+    Route::get('giam-dan',[UserController::class,'decrease'])->name('user.decrease');
+    Route::get('sap-xep-ten',[UserController::class,'sort_name'])->name('user.sort_name');
+    Route::get('sap-xep-ten-desc',[UserController::class,'sort_name_desc'])->name('user.sort_name_desc');
+    Route::get('search',[UserController::class,'search'])->name('user.search');
+
+
     Route::get('/{category}-{slug}',[UserController::class,'category'])->name('user.category');
     Route::get('san-pham/{product}-{slug}',[UserController::class,'productSingle'])->name('user.productSingle');
     Route::get('yeu-thich/{id}', [UserController::class, 'favorite'])->name('user.favorite');

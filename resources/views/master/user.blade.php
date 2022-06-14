@@ -203,20 +203,9 @@
                             <span class="gift"><a href="#">Quà tặng hấp dẫn </a></span>
                             <span class="customer"><a href="#">Hỗ trợ 24/7</a></span>
                             <div class="box-search">
-                                <form action="http://demo.7uptheme.com/html/mello/home-01.html?q=exp" method="POST">
-                                    <button><span>search</span></button>
-                                    <ul class="drop-search">
-                                        <li>
-                                            <span class="selected">All Categories </span>
-                                            <ul>
-                                                <li>All Categories </li>
-                                                <li>Cate 1</li>
-                                                <li>Cate 2</li>
-                                                <li>Cate 3</li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                    <input name="search" type="text" value="" placeholder="Tìm kiếm sản phẩm " />
+                                <form action="{{route('user.search')}}" method="GET">
+                                    <button type="submit"><span>search</span></button>
+                                    <input  type="text" name="key" value="" placeholder="Tìm kiếm sản phẩm " />
                                 </form>
                             </div>
                         </div>
