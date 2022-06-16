@@ -2,7 +2,7 @@
 @section('title','Thêm sản phẩm')
 @section('content')
 <h2 style="text-align: center ;">
-    <font color="RED">tHÊM MỚI SẢN PHẨM</font>
+    <font color="RED">THÊM MỚI SẢN PHẨM</font>
 </h2> 
 <br><br>
 <form action="{{route('product.store')}}" method="POST" role="form" enctype="multipart/form-data">
@@ -14,7 +14,7 @@
                 <label for="">Tên sản phẩm</label>
                 <input type="text" class="form-control" name="name" id="" placeholder="Tên sản phẩm ">
                 @error('name')
-                <small class="help-block">{{$message}}</small>
+                <small class="help-block " color="red">{{$message}}</small>
                 @enderror
             </div>
             <div class="form-group">

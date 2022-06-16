@@ -75,10 +75,10 @@ class UserController extends Controller
        return redirect()->route('user')->with('ok',' Bỏ Yêu Thích Thành Công');
     }
 
-    public function favorites_list()
+    public function favorite_list()
     {
-       $products = auth()->guard('customer')->user()->favorites;
-       return view('favorites_list', compact('products'));
+        $products = auth()->guard('customer')->user()->favorites()->paginate(4);
+        return view('user.view-favorite', compact('products'));
     }
     //sắp xếp sản phẩm
     public function ascending(){

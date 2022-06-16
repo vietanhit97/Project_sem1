@@ -1,3 +1,4 @@
+<?php $stt= 0 ;?>
 @extends('master.user')
 @section('title','Giỏ Hàng')
 @section('main')
@@ -27,16 +28,16 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($cart->items as $key => $item )
+            @foreach($cart->items as $item )
             <tr>
-                <td>{{$key+=1}}</td>
+                <td>{{$stt+=1}}</td>
                 <td><img src="{{url('public/uploads')}}/{{$item -> image}}" alt="" width="50px"></td>
                 <td>{{$item -> name}}</td>
                 <td>{{number_format($item -> price)}} đ</td>
                 <td>
                     <form action="{{ route('cart.update', $item->id)}}" method="GET" class="form-inline" role="form">
                         <div class="form-group">
-                            <input type="number" size="4" class="input-text qty text" title="Qty"
+                            <input type="number" class="input-text qty text" title="Qty"
                                 value="{{$item->quantity}}" name="quantity" min="1" step="1">
                         </div>
                         <button type="submit" class="btn btn-sm btn-success">Cập Nhật</button>
@@ -69,14 +70,12 @@
     <a href="{{route('cart.clear')}}" class="btn btn-danger" onclick="return confirm('bạn có chắc muốn xóa')">Xóa
         hết</a>
     <a href="{{route('customer.checkout')}}" class="btn btn-success">Đặt hàng ngay</a>
-
     @else
     <div class="alert alert-danger mt">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <strong>Giỏ hàng !</strong> Không có dữ liệu nào... 
         <a href="{{route('user')}}" class="btn btn-primary">Tiếp tục mua hàng</a>
     </div>
-
     @endif
 </div>
 @stop

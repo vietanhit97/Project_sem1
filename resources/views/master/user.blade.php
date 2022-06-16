@@ -282,7 +282,7 @@
                                 <ul>
                                     <li><a href="#">Tài Khoản </a></li>
                                     <li><a href="{{route('cart.view')}}">Giỏ hàng</a></li>
-                                    <li><a href="#">Lịch sử mua hàng</a></li>
+                                    <li><a href="{{route('customer.order')}}">Lịch sử mua hàng</a></li>
                                 </ul>
                             </div>
                             @else

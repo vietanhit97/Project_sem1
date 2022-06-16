@@ -60,7 +60,7 @@ class Customer extends Authenticatable
      */
     public function favorites()
     {
-        return $this->belongsToMany(Product::class,'favotites');
+        return $this->belongsToMany(Product::class,'favorite'); // truy vấn join 2 bảng  Product::class -> bảng sản phẩm ;  'favorite' -> bảng favorite
     }
     public function scopeSearch($query) // scopeSearch viết bên controller bỏ scope viết thương search
     {

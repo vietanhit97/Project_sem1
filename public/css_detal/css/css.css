@@ -5,3 +5,7 @@
 .mt {
     margin-bottom: 50px;
 }
+
+.help-block {
+    color: red !important;
+}
