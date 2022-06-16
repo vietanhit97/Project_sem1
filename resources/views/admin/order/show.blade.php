@@ -16,7 +16,11 @@
         </div>
 
     </div>
+    <P>Mã đơn hàng : <font color="red"> {{$order -> id}}</font>
+    </P>
     <P>Tên người nhận : <font color="red"> {{$order -> name}}</font>
+    </P>
+    <P>Số điện thoại người nhận : <font color="red"> {{$order -> phone}}</font>
     </P>
     <p>Địa chỉ : <font color="red"> {{$order -> address}}</font>
     </p>
@@ -25,9 +29,11 @@
     <table class="table table-hover mt-5">
         <thead>
             <tr>
-                <th style="text-align: center ;">ID đơn hàng</th>
-                <th style="text-align: center ;">Email người nhận</th>
-                <th style="text-align: center ;">Số Điện Thoại</th>
+                <th style="text-align: center ;">STT</th>
+                <th style="text-align: center ;">Tên sản phẩm</th>
+                <th style="text-align: center ;">Số lượng</th>
+                <th style="text-align: center ;">Giá Sản Phẩm</th>
+
 
 
 
@@ -36,11 +42,14 @@
         </thead>
         <tbody>
 
+            @foreach($order->details as $key => $detail)
             <tr style="text-align: center ;">
-                <td>{{$order -> id}}</td>
-                <td>{{$order -> email}}</td>
-                <td>{{$order -> phone}}</td>
+                <td>{{$key+1}}</td>
+                <td>{{$detail->product->name}}</td>
+                <td>{{$detail->quantity}}</td>
+                <td>{{number_format($detail->price)}} đ</td>
             </tr>
+            @endforeach
 
         </tbody>
 
@@ -48,8 +57,10 @@
     </table>
     <br>
     <br>
-
-    <h4>Tổng thanh toán :<font color="red">Tổng tiền</font> </h4>
+    @foreach($order->details as $key => $detail)
+    <h4>Tổng thanh toán :<font color="red">{{number_format($detail->price * $detail->quantity)}} đ</font>
+    @endforeach
+    </h4>
 
     <br><br>
     <hr>

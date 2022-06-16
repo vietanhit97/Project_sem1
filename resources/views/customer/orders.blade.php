@@ -42,8 +42,7 @@
                     @endif
                 </td>
                 <td>
-                    <a data-toggle="modal" href='#modal-{{$order->id}}' class="btn btn-success">Xem</a>
-
+                    <a  href="{{route('customer.orders_detail',$order->id)}}" class="btn btn-success">Xem</a>
                 </td>
             </tr>
             @endforeach
@@ -51,43 +50,5 @@
     </table>
 </div>
 
-@foreach ($customer->orders as $key => $order)
 
-<div class="modal fade" id="modal-{{$order->id}}">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Modal title</h4>
-            </div>
-            <div class="modal-body">
-
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>STT</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Số lượng</th>
-                            <th>Giá</th>
-                            <th>Thành tiền</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($order->details as $key => $detail)
-                        <tr>
-                            <td>{{$key+1}}</td>
-                            <td>{{$detail->product->name}}</td>
-                            <td>{{$detail->quantity}}</td>
-                            <td>{{number_format($detail->price)}}</td>
-                            <td>{{number_format($detail->price * $detail->quantity)}}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-
-            </div>
-        </div>
-    </div>
-</div>
-@endforeach
 @stop

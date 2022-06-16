@@ -79,5 +79,7 @@ Route::group(['prefix' => 'customer'], function() {
     Route::post('/checkout', [CustomerController::class, 'post_checkout']);
     Route::get('/checkout-ok', [CustomerController::class, 'checkout_ok'])->name('checkout-ok');
     Route::get('/orders', [CustomerController::class, 'orders'])->name('customer.order');
+    Route::get('/orders-detail/{order}', [CustomerController::class, 'orders_detail'])->name('customer.orders_detail');
+
 }); 
 

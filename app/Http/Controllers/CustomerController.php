@@ -55,4 +55,13 @@ class CustomerController extends Controller
         return view('customer.checkout-ok');
     }
 
+    public function orders_detail(Order $order){
+        if (auth()->guard('customer')->check()) {
+            $customer = auth()->guard('customer')->user();
+            return view('customer.orders_detail', compact('customer'), compact('order'));
+        } else {
+            return abort(401);
+        }
+   
+    }
 }

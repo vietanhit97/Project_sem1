@@ -20,6 +20,7 @@
             <th  style="text-align: center ;">Email người nhận</th>
             <th  style="text-align: center ;">Số Điện Thoại</th>
             <th  style="text-align: center ;">Địa Chỉ</th>
+            <th  style="text-align: center ;">Trạng Thái</th>
             <th  style="text-align: center ;">Chi Tiết</th>
 
 
@@ -34,6 +35,7 @@
             <td>{{$order -> email}}</td>
             <td>{{$order -> phone}}</td>
             <td>{{$order -> address}}</td>
+            <td>{{$order -> status}}</td>
             <td>
             <a href="{{route('order.show',$order->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
                 
