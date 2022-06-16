@@ -1,6 +1,10 @@
 @extends('master.admin')
 @section('title','Thêm Danh Mục')
 @section('content')
+<h2 style="text-align: center ;">
+    <font color="RED">THÊM MỚI DANH MỤC</font>
+</h2>
+<br><br>
 <form action="{{route('category.store')}}" method="POST" role="form">
     <legend>Thêm mới Danh Mục</legend>
     @csrf

@@ -50,25 +50,25 @@
                             <div class="form-group">
                                 <label for="">Họ và tên</label>
                                 <input type="text" class="form-control" name="name" value="{{$customer->name}}"
-                                    placeholder="Input name">
+                                    placeholder="Nhập họ tên...">
                             </div>
 
                             <div class="form-group">
                                 <label for="">Email</label>
                                 <input type="email" class="form-control" name="email" value="{{$customer->email}}"
-                                    placeholder="Input email">
+                                    placeholder="Nhập Email...">
                             </div>
 
                             <div class="form-group">
                                 <label for="">Điện thoại</label>
                                 <input class="form-control" name="phone" value="{{$customer->phone}}"
-                                    placeholder="Input phone">
+                                    placeholder="Nhập số điện thoại...">
                             </div>
 
                             <div class="form-group">
                                 <label for="">Địa chỉ</label>
                                 <input class="form-control" name="address" value="{{$customer->address}}"
-                                    placeholder="Input address">
+                                    placeholder="Nhập địa chỉ...">
                             </div>
                         </div>
                     </div>

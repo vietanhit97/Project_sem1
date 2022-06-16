@@ -1,6 +1,10 @@
 @extends('master.admin')
 @section('title','Sửa sản phẩm')
 @section('content')
+<h2 style="text-align: center ;">
+    <font color="RED">CHỈNH SỬA SẢN PHẨM</font>
+</h2>
+<br><br>
 <form action="{{route('product.update',$product->id)}}" method="POST" role="form" enctype="multipart/form-data">
     <legend>Sửa sản phẩm</legend>
     @csrf @method('PUT')

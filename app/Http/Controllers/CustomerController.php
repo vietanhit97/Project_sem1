@@ -13,27 +13,6 @@ class CustomerController extends Controller
         return view('admin.customer.customer',compact('cats'));
     }
    
-    public function destroy(Customer $customer) {
-       
-        $customer->delete();
-        return redirect()->route('customer.index')->with('ok','xóa thành công !');
-    }
-   
-    public function trashed(){
-        $cats = Customer::search()->onlyTrashed()->paginate();
-        return view('admin.customer.trashed',compact('cats'));
-    }
-    public function restore($id){
-        $customer = Customer::withTrashed()->find($id);
-        $customer->restore();
-       return redirect()->route('customer.index')->with('ok','Khôi phục thành công ');
-    }
-    public function forceDelete($id){
-        $customer = Customer::withTrashed()->find($id);
-        $customer->forceDelete();
-        return redirect()->route('customer.trashed')->with('ok','Xóa vĩnh viễn thành công ');
-    }
-
     public function checkout()
     {
         $customer = auth()->guard('customer')->check() ? auth()->guard('customer')->user() : null;

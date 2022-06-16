@@ -6,6 +6,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OrderController;
+
 
 
  // khai báo router 
@@ -26,6 +28,8 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function(){ //group tru
         'category'=> CategoryController::class,
         'product'=> ProductController::class,
         'customer' => CustomerController::class,
+        'order' => OrderController::class,
+        
     ]);
     Route::group(['prefix'=>'category'], function(){
         Route::get('delete/trashed',[CategoryController::class,'trashed'])->name('category.trashed');
@@ -39,11 +43,9 @@ Route::group(['prefix'=>'admin','middleware' => 'auth'], function(){ //group tru
         Route::delete('force-delete/{product}',[ProductController::class,'forceDelete'])->name('product.forceDelete');
         Route::get('delete-image/{image}',[ProductController::class,'deleteImage'])->name('product.deleteImage');
     });
-    Route::group(['prefix'=>'customer'], function(){
-        Route::get('delete/trashed',[CustomerController::class,'trashed'])->name('customer.trashed');
-        Route::get('restore/{customer}',[CustomerController::class,'restore'])->name('customer.restore');
-        Route::delete('force-delete/{customer}',[CustomerController::class,'forceDelete'])->name('customer.forceDelete');
-    }); 
+    Route::group(['prefix'=>'order'], function(){
+        Route::get('show-order/{order}',[OrderController::class,'show'])->name('order.show');
+         });
 
 });
 Route::group(['prefix'=>'user'], function(){ //group truyền 2 tham sô : mảng và function

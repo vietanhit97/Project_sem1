@@ -39,12 +39,12 @@ return [
         ]
     ],
     [
-        'route' => 'customer.index',
+        'route' => 'order.index',
         'title' => 'Đơn hàng',
         'icon' => 'fa fa-building',
         'items' => [
            [
-            'route'=> 'customer.index',
+            'route'=> 'order.index',
             'title' => 'Chi tiết đơn hàng'
            ]
         ]

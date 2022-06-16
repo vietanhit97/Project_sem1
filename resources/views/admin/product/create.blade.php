@@ -1,6 +1,10 @@
 @extends('master.admin')
 @section('title','Thêm sản phẩm')
 @section('content')
+<h2 style="text-align: center ;">
+    <font color="RED">tHÊM MỚI SẢN PHẨM</font>
+</h2> 
+<br><br>
 <form action="{{route('product.store')}}" method="POST" role="form" enctype="multipart/form-data">
     <legend>Thêm mới sản phẩm</legend>
     @csrf

@@ -1,6 +1,10 @@
 @extends('master.admin')
 @section('title','Sửa Danh Mục')
 @section('content')
+<h2 style="text-align: center ;">
+    <font color="RED">CHỈNH SỬA DANH MỤC</font>
+</h2>
+<br><br>
 <form action="{{route('category.update',$category->id)}}" method="POST" role="form">
     <legend>Sửa Danh Mục</legend>
     @csrf @method('PUT')

@@ -3,6 +3,10 @@
 @section('title','Chi tiết sản phẩm')
 
 @section('content')
+<h2 style="text-align: center ;">
+    <font color="RED">CHI TIẾT SẢN PHẨM</font>
+</h2>
+<br><br>
 <div class="row">
     <div class="col-md-5">
         <img src="{{url('public/uploads')}}/{{$product->image}}" alt="" style="width:100%">

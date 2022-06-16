@@ -1,7 +1,10 @@
 @extends('master.admin')
 @section('title','Danh sách sản phẩm')
 @section('content')
-
+<h2 style="text-align: center ;">
+    <font color="RED">SẢN PHẨM</font>
+</h2>
+<br><br>
 <form action="{{route('product.index')}}" method="GET" class="form-inline" role="form">
 
     <div class="form-group">

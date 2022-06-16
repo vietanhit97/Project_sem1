@@ -1,5 +1,5 @@
 @extends('master.admin')
-@section('title','Quản lí khách hàng')
+@section('title','Quản lí đơn hàng')
 @section('content')
 
 <form action="{{route('customer.index')}}" method="GET" class="form-inline" role="form">
@@ -15,27 +15,34 @@
 <table class="table table-hover mt-5">
     <thead>
         <tr >
-            <th  style="text-align: center ;">ID</th>
-            <th  style="text-align: center ;">Tên Khách Hàng</th>
-            <th  style="text-align: center ;">Email Khách hàng</th>
+            <th  style="text-align: center ;">ID đơn hàng</th>
+            <th  style="text-align: center ;">Tên Người nhận</th>
+            <th  style="text-align: center ;">Email người nhận</th>
             <th  style="text-align: center ;">Số Điện Thoại</th>
             <th  style="text-align: center ;">Địa Chỉ</th>
+            <th  style="text-align: center ;">Chi Tiết</th>
+
+
             
         </tr>
     </thead>
     <tbody>
-        @foreach($cats as $cat)
+        @foreach($orders as $order)
         <tr style="text-align: center ;">
-            <td>{{$cat -> id}}</td>
-            <td>{{$cat -> name}}</td>
-            <td>{{$cat -> email}}</td>
-            <td>{{$cat -> phone}}</td>
-            <td>{{$cat -> address}}</td>
+            <td>{{$order -> id}}</td>
+            <td>{{$order -> name}}</td>
+            <td>{{$order -> email}}</td>
+            <td>{{$order -> phone}}</td>
+            <td>{{$order -> address}}</td>
+            <td>
+            <a href="{{route('order.show',$order->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                
+            </td>
             
         </tr>
         @endforeach
     </tbody>
 </table>
 
-{{$cats->appends(request()->all())->links()}}
+{{$orders->appends(request()->all())->links()}}
 @stop
