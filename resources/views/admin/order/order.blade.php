@@ -1,7 +1,9 @@
 @extends('master.admin')
 @section('title','Quản lí đơn hàng')
 @section('content')
-
+<h2 style="text-align: center ;">
+    <font color="RED">ĐƠN HÀNG</font>
+</h2>
 <form action="{{route('customer.index')}}" method="GET" class="form-inline" role="form">
 
     <div class="form-group">

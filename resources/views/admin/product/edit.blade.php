@@ -116,7 +116,7 @@
                     </label>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Thêm Mới</button>
+            <button type="submit" class="btn btn-primary">Sửa</button>
         </div>
 
     </div>
