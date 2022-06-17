@@ -8,14 +8,12 @@
         <input type="text" name='key' class="form-control" id="" placeholder="Tìm kiếm">
     </div>
     <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
-    <a href="{{route('customer.create')}}" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i>Thêm
-        Mới</a>
 
 </form>
 <table class="table table-hover mt-5">
     <thead>
         <tr >
-            <th  style="text-align: center ;">ID</th>
+            <th  style="text-align: center ;">STT</th>
             <th  style="text-align: center ;">Tên Khách Hàng</th>
             <th  style="text-align: center ;">Email Khách hàng</th>
             <th  style="text-align: center ;">Số Điện Thoại</th>
@@ -24,9 +22,9 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($cats as $cat)
+        @foreach($cats as $key => $cat)
         <tr style="text-align: center ;">
-            <td>{{$cat -> id}}</td>
+            <td>{{$key+=1}}</td>
             <td>{{$cat -> name}}</td>
             <td>{{$cat -> email}}</td>
             <td>{{$cat -> phone}}</td>

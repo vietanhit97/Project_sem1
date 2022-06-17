@@ -24,7 +24,8 @@ class UserController extends Controller
        return view('user.category',compact('productOfCategory','category'));
    }
    public function productSingle(Product $product){
-      return view('user.singleProduct',compact('product'));
+         $image_list1 = $product->images;
+      return view('user.singleProduct',compact('product','image_list1'));
    }
    public function registration(){
     return view('customer.registration');

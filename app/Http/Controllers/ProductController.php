@@ -89,7 +89,8 @@ class ProductController extends Controller
         return redirect()->route('product.index')->with('no','Sửa không thành công');
     }
     public function show(Product $product) {
-        return view('admin.product.show',compact('product'));
+        $image_list1 = $product->images;
+        return view('admin.product.show',compact('product','image_list1'));
     }
     public function trashed(){
         $pros = Product::search()->onlyTrashed()->paginate(4);
@@ -109,4 +110,5 @@ class ProductController extends Controller
         $image->delete();
         return redirect()->back()->with('ok','xóa hình ảnh thành công');
     }
+
 }

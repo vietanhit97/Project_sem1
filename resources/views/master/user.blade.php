@@ -62,7 +62,7 @@
                                     <div class="content">
                                         @if(auth()->guard('customer')->check())
                                         <ul class="left">
-                                            <li><a class="top-link-myaccount" href="#">Thông Tin</a></li>
+                                            <li><a class="top-link-myaccount" href="#">{{auth()->guard('customer')->user()->name}}</a></li>
                                             <li><a class="top-link-wishlist" href="{{route('user.product_favorite')}}">Yêu Thích</a></li>
                                             <li><a class="top-link-wishlist" href="{{route('customer.order')}}">Lịch sử </a></li>
                                             <li><a class="top-link-login" href="{{route('user.logout')}}">Thoát</a></li>
@@ -334,6 +334,7 @@
         </div>
         <a id="gototop">Top</a>
         <!--js-->
+       
         <script type="text/javascript" src="{{url('public/usercss')}}/js/jquery-1.11.1.min.js"></script>
         <script type="text/javascript" src="{{url('public/usercss')}}/style/bootstrap/js/bootstrap.min.js"></script>
         <script src="{{url('public/usercss')}}/js/galary-image/js/jquery.blueimp-gallery.min.js"></script>
@@ -344,6 +345,7 @@
         <script type="text/javascript" src="{{url('public/usercss')}}/js/slideshow/jquery.themepunch.plugins.min.js">
         </script>
         <script type="text/javascript" src="{{url('public/usercss')}}/js/theme.js"></script>
+        @yield('js')
     </div>
     <!--end footer-->
 </body>

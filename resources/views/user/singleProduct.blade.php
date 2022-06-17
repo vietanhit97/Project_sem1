@@ -33,7 +33,17 @@
                                             <div class="col-sm-6">
                                                 <div class="product-images">
                                                     <div class="product-main-img">
-                                                        <img src="{{url('public/uploads')}}/{{$product->image}} " width="300px" alt="">
+                                                        <img src="{{url('public/uploads')}}/{{$product->image}} " id="big-img"
+                                                            width="50%" alt="">
+                                                    </div>
+                                                    
+                                                    <div class="product-gallery">
+                                                    <img src="{{url('public/uploads/'.$product->image)}}" class="product-thumb" alt="" style="width:100px">
+                                                        @foreach($image_list1 as $img1)
+                                                        <img class="product-thumb"
+                                                            src="{{url('public/uploads/'.$img1->image_name)}}" alt=""
+                                                            style="width:120px">
+                                                            @endforeach
                                                     </div>
                                                 </div>
                                             </div>
@@ -49,7 +59,8 @@
                                                         @endif
                                                     </div>
 
-                                                    <form action="{{route('cart.add', $product->id )}}" method="GET" class="cart">
+                                                    <form action="{{route('cart.add', $product->id )}}" method="GET"
+                                                        class="cart">
                                                         <div class="quantity">
                                                             <input type="number" size="4" class="input-text qty text"
                                                                 title="Qty" value="1" name="quantity" min="1" step="1">
@@ -76,8 +87,8 @@
                                                             <div role="tabpanel" class="tab-pane fade" id="profile">
                                                                 <h2>Reviews</h2>
                                                                 <div class="submit-review">
-                                                                    <p><label for="name">Họ Tên</label> <input name="name"
-                                                                            type="text"></p>
+                                                                    <p><label for="name">Họ Tên</label> <input
+                                                                            name="name" type="text"></p>
                                                                     <p><label for="email">Email</label> <input
                                                                             name="email" type="email">
                                                                     </p>
@@ -109,79 +120,19 @@
                             </div>
                         </div>
                     </div>
-                    <div id="upsell_pro" class="products-grid">
-                        <div class="inner">
-                            <div class="title">
-                                <span>Sản Phẩm Liên Quan</span>
-                            </div>
-                            <div class="block  vt-slider vt-slider5  row">
-                                <div class="slider-inner">
-                                    <div class="container-slider">
-                                        <div class="products-grid">
-                                            <div class="item">
-                                                <div class="item-wrap">
-                                                    <div class="item-image">
-                                                        <a class="product-image no-touch" href="#"
-                                                            title="Ipad Air and iOS7">
-                                                            <img class="first_image"
-                                                                src="{{url('public/usercss')}}/images/product/larg/demo6.jpg"
-                                                                alt="Product demo" />
-                                                        </a>
-                                                        <div class="item-btn">
-                                                            <div class="box-inner">
-                                                                <a title="Add to wishlist" href="#"
-                                                                    class="link-wishlist">&nbsp;</a>
-                                                                <a title="Add to compare" href="#"
-                                                                    class="link-compare">&nbsp;</a>
-                                                                <span class="qview">
-                                                                    <a class="vt_quickview_handler"
-                                                                        data-original-title="Quick View"
-                                                                        data-placement="left" data-toggle="tooltip"
-                                                                        href="#"><span>Quick View</span></a>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <a title="Add to cart" class="btn-cart" href="#">&nbsp;</a>
-                                                    </div>
-                                                    <div class="pro-info">
-                                                        <div class="pro-inner">
-                                                            <div class="pro-title product-name"><a href="#">Ipad Air
-                                                                    and iOS7</a></div>
-                                                            <div class="pro-content">
-                                                                <div class="wrap-price">
-                                                                    <div class="price-box">
-                                                                        <span class="regular-price">
-                                                                            <span class="price">$800.00</span></span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="ratings">
-                                                                    <div class="rating-box">
-                                                                        <div class="rating" style="width:80%"></div>
-                                                                    </div>
-                                                                    <span class="amount"><a href="#">1(s)</a></span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!--end item wrap -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="navslider">
-                                        <a class="prev" href="#">Prev</a>
-                                        <a class="next" href="#">Next</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-
-
 @stop
+@section('js')
+<script>
+$('.product-thumb').click(function() {
+    var _src = $(this).attr('src');
+    // alert(_src)
+    $('#big-img').attr('src', _src);
+})
+</script>
+@stop()

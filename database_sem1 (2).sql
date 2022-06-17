@@ -1,13 +1,8 @@
 
---
--- Cơ sở dữ liệu: `database_sem1`
---
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `category`
---
 
 CREATE TABLE `category` (
   `id` int(10) UNSIGNED NOT NULL,
@@ -26,20 +21,6 @@ INSERT INTO `category` (`id`, `name`, `status`, `deleted_at`, `created_at`, `upd
 (1, 'iPhone', 0, NULL, '2022-05-23 07:49:13', '2022-05-23 07:49:13'),
 (2, 'Sam Sung', 0, NULL, '2022-05-23 07:49:25', '2022-05-23 07:49:25'),
 (3, 'Xiaomi', 0, NULL, '2022-05-23 07:49:56', '2022-05-23 07:49:56');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `comment`
---
-
-CREATE TABLE `comment` (
-  `customer_id` int(10) UNSIGNED NOT NULL,
-  `product_id` int(10) UNSIGNED NOT NULL,
-  `comment_text` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -104,7 +85,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2022_04_28_134002_create_orders_table', 1),
 (6, '2022_04_28_140900_create_order_details_table', 1),
 (7, '2022_05_22_124041_create_favorites_table', 1),
-(8, '2022_05_22_125957_create_comments_table', 1);
+(8, '2022_05_22_125957_create_comments_table', 1),
+(9, '2022_06_01_111841_create_product_images_table', 2);
 
 -- --------------------------------------------------------
 
@@ -125,6 +107,18 @@ CREATE TABLE `orders` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `orders`
+--
+
+INSERT INTO `orders` (`id`, `customer_id`, `name`, `email`, `phone`, `address`, `status`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Việt Anh', 'customer@gmail.com', '0385201482', 'Hà Nội', 0, '2022-06-05 02:38:12', '2022-06-04 19:38:12', '2022-06-04 19:38:12'),
+(2, 1, 'Việt Anh', 'customer@gmail.com', '0385201482', 'Hà Nội', 0, '2022-06-05 02:38:16', '2022-06-04 19:38:16', '2022-06-04 19:38:16'),
+(3, 1, 'Việt Anh', 'customer@gmail.com', '0385201482', 'Hà Nội', 0, '2022-06-05 02:39:12', '2022-06-04 19:39:12', '2022-06-04 19:39:12'),
+(4, 1, 'Việt Anh', 'customer@gmail.com', '0385201482', 'Hà Nội', 0, '2022-06-05 02:43:18', '2022-06-04 19:43:18', '2022-06-04 19:43:18'),
+(5, 1, 'Việt Anh', 'customer@gmail.com', '0385201482', 'Hà Nội', 0, '2022-06-05 02:49:55', '2022-06-04 19:49:55', '2022-06-04 19:49:55'),
+(6, 1, 'Việt Anh', 'customer@gmail.com', '0385201482', 'Hà Nội', 0, '2022-06-05 02:53:02', '2022-06-04 19:53:02', '2022-06-04 19:53:02');
+
 -- --------------------------------------------------------
 
 --
@@ -135,8 +129,18 @@ CREATE TABLE `order_details` (
   `order_id` int(10) UNSIGNED NOT NULL,
   `product_id` int(10) UNSIGNED NOT NULL,
   `quantity` int(10) UNSIGNED NOT NULL,
-  `price` double(8,2) NOT NULL
+  `price` float(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `order_details`
+--
+
+INSERT INTO `order_details` (`order_id`, `product_id`, `quantity`, `price`) VALUES
+(3, 11, 1, 32000000.00),
+(4, 12, 1, 14990000.00),
+(5, 12, 1, 14990000.00),
+(6, 4, 1, 26000000.00);
 
 -- --------------------------------------------------------
 
@@ -163,7 +167,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `price`, `sale_price`, `image`, `description`, `category_id`, `status`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'iPhone 11 - 128GB - Chính hãng VN/A', 21990000.00, 13090000.00, '1653319036.png', '<ul>\r\n<li><strong>Công nghệ màn hình::</strong><span> </span><span>IPS LCD</span></li>\r\n<li><strong>Độ phân giải::</strong><span> </span><span>828 x 1792 Pixels</span></li>\r\n<li><strong>Màn hình rộng::</strong><span> </span><span>6.1\"</span></li>\r\n<li><strong>Độ phân giải:</strong><span> </span><span>2 camera 12 MP, 12 MP</span></li>\r\n<li><strong>Hệ điều hành:</strong><span> </span><span>iOS 14</span></li>\r\n<li><strong>Chip xử lý (CPU):</strong><span> </span><span>Apple A13 Bionic 6 nhân</span></li>\r\n<li><strong>Bộ nhớ trong (ROM):</strong><span> </span><span>64 GB</span></li>\r\n<li><strong>RAM:</strong><span> </span><span>4 GB</span></li>\r\n<li><strong>Mạng di động:</strong><span> </span><span>Hỗ trợ 4G</span></li>\r\n<li><strong>Số khe sim:</strong><span> </span><span>1 Nano SIM &amp; 1 eSIM</span></li>\r\n<li><strong>Dung lượng pin:</strong><span> </span><span>3110 mAh</span></li>\r\n</ul>', 1, 0, NULL, '2022-05-23 08:06:22', '2022-05-23 08:17:16'),
+(1, 'iPhone 11 - 128GB - Chính hãng VN/A', 21990000.00, 13090000.00, '1653319036.png', '<ul>\r\n<li><strong>Công nghệ màn hình::</strong><span> </span><span>IPS LCD</span></li>\r\n<li><strong>Độ phân giải::</strong><span> </span><span>828 x 1792 Pixels</span></li>\r\n<li><strong>Màn hình rộng::</strong><span> </span><span>6.1\"</span></li>\r\n<li><strong>Độ phân giải:</strong><span> </span><span>2 camera 12 MP, 12 MP</span></li>\r\n<li><strong>Hệ điều hành:</strong><span> </span><span>iOS 14</span></li>\r\n<li><strong>Chip xử lý (CPU):</strong><span> </span><span>Apple A13 Bionic 6 nhân</span></li>\r\n<li><strong>Bộ nhớ trong (ROM):</strong><span> </span><span>64 GB</span></li>\r\n<li><strong>RAM:</strong><span> </span><span>4 GB</span></li>\r\n<li><strong>Mạng di động:</strong><span> </span><span>Hỗ trợ 4G</span></li>\r\n<li><strong>Số khe sim:</strong><span> </span><span>1 Nano SIM &amp; 1 eSIM</span></li>\r\n<li><strong>Dung lượng pin:</strong><span> </span><span>3110 mAh</span></li>\r\n</ul>', 2, 0, NULL, '2022-05-23 08:06:22', '2022-06-17 04:44:32'),
 (2, 'Xiaomi 11T Pro 5G - 12GB/256GB', 14990000.00, NULL, '1653318510.png', '<ul>\r\n<li><strong>Công nghệ màn hình::</strong><span> </span><span>AMOLED</span></li>\r\n<li><strong>Độ phân giải::</strong><span> </span><span>Full HD+ (1080 x 2400 Pixels)</span></li>\r\n<li><strong>Màn hình rộng::</strong><span> </span><span>6.67\" - Tần số quét 120 Hz</span></li>\r\n<li><strong>Độ phân giải:</strong><span> </span><span>Chính 108 MP &amp; Phụ 8 MP, 5 MP, 16 MP</span></li>\r\n<li><strong>Hệ điều hành:</strong><span> </span><span>Android 11</span></li>\r\n<li><strong>Chip xử lý (CPU):</strong><span> </span><span>Snapdragon 888 8 nhân</span></li>\r\n<li><strong>Bộ nhớ trong (ROM):</strong><span> </span><span>256 GB</span></li>\r\n<li><strong>RAM:</strong><span> </span><span>12 GB</span></li>\r\n<li><strong>Mạng di động:</strong><span> </span><span>Hỗ trợ 5G</span></li>\r\n<li><strong>Số khe sim:</strong><span> </span><span>2 Nano SIM</span></li>\r\n<li><strong>Dung lượng pin:</strong><span> </span><span>5000 mAh</span></li>\r\n</ul>', 3, 0, NULL, '2022-05-23 08:08:30', '2022-05-23 08:08:30'),
 (3, 'Samsung Galaxy S21 Ultra 128GB 5G', 30990000.00, 19590000.00, '1653318670.png', '<ul>\r\n<li><strong>Công nghệ màn hình::</strong><span> </span><span>Dynamic AMOLED 2X</span></li>\r\n<li><strong>Độ phân giải::</strong><span> </span><span>2K+ (1440 x 3200 Pixels)</span></li>\r\n<li><strong>Màn hình rộng::</strong><span> </span><span>6.8\"</span></li>\r\n<li><strong>Độ phân giải:</strong><span> </span><span>Chính 108 MP &amp; Phụ 12 MP, 10 MP, 10 MP, 40 MP</span></li>\r\n<li><strong>Chip xử lý (CPU):</strong><span> </span><span>Exynos 2100 8 nhân</span></li>\r\n<li><strong>Bộ nhớ trong (ROM):</strong><span> </span><span>128 GB</span></li>\r\n<li><strong>RAM:</strong><span> </span><span>12 GB</span></li>\r\n<li><strong>Mạng di động:</strong><span> </span><span>Hỗ trợ 5G</span></li>\r\n<li><strong>Số khe sim:</strong><span> </span><span>2 Nano SIM hoặc 1 Nano SIM + 1 eSIM</span></li>\r\n<li><strong>Dung lượng pin:</strong><span> </span><span>5000 mAh</span></li>\r\n</ul>', 2, 0, NULL, '2022-05-23 08:11:10', '2022-05-23 08:11:10'),
 (4, 'Apple iPhone 12 Pro Max - 256GB', 28990000.00, 26000000.00, '1653318875.png', '<ul>\r\n<li><strong>Công nghệ màn hình::</strong><span> </span><span>OLED</span></li>\r\n<li><strong>Độ phân giải::</strong><span> </span><span>1170 x 2532 Pixels</span></li>\r\n<li><strong>Màn hình rộng::</strong><span> </span><span>6.1\"</span></li>\r\n<li><strong>Độ phân giải:</strong><span> </span><span>2 camera 12 MP, 12 MP</span></li>\r\n<li><strong>Hệ điều hành:</strong><span> </span><span>iOS 14</span></li>\r\n<li><strong>Chip xử lý (CPU):</strong><span> </span><span>Apple A14 Bionic 6 nhân</span></li>\r\n<li><strong>Bộ nhớ trong (ROM):</strong><span> </span><span>256 GB</span></li>\r\n<li><strong>RAM:</strong><span> </span><span>4 GB</span></li>\r\n<li><strong>Mạng di động:</strong><span> </span><span>Hỗ trợ 5G</span></li>\r\n<li><strong>Số khe sim:</strong><span> </span><span>1 Nano SIM &amp; 1 eSIM</span></li>\r\n<li><strong>Dung lượng pin:</strong><span> </span><span>2815 mAh</span></li>\r\n</ul>', 1, 0, NULL, '2022-05-23 08:14:35', '2022-05-23 08:14:35'),
@@ -176,6 +180,39 @@ INSERT INTO `product` (`id`, `name`, `price`, `sale_price`, `image`, `descriptio
 (11, 'Samsung Galaxy S22 Ultra - 12GB/512GB', 36990000.00, 32000000.00, '1653319708.png', '<ul>\r\n<li><strong>Công nghệ màn hình::</strong><span> </span><span>Dynamic AMOLED 2X</span></li>\r\n<li><strong>Độ phân giải::</strong><span> </span><span>3088 x 1440</span></li>\r\n<li><strong>Màn hình rộng::</strong><span> </span><span>6.8\", Tần số quét: 1 - 120 Hz</span></li>\r\n<li><strong>Độ phân giải:</strong><span> </span><span>12MP (UW) + 108MP (W) + 12MP (Tele3x) + 12MP (Tele10x), 40MP</span></li>\r\n<li><strong>Hệ điều hành:</strong><span> </span><span>Android 12</span></li>\r\n<li><strong>Chip xử lý (CPU):</strong><span> </span><span>Snapdragon® 8 Gen 1 (4nm)</span></li>\r\n<li><strong>Bộ nhớ trong (ROM):</strong><span> </span><span>256GB</span></li>\r\n<li><strong>RAM:</strong><span> </span><span>12GB</span></li>\r\n<li><strong>Mạng di động:</strong><span> </span><span>5G</span></li>\r\n<li><strong>Số khe sim:</strong><span> </span><span>1 nano SIM + 1 e-SIM</span></li>\r\n<li><strong>Dung lượng pin:</strong><span> </span><span>5000 mAh</span></li>\r\n</ul>', 2, 0, NULL, '2022-05-23 08:28:28', '2022-05-23 08:28:28'),
 (12, 'Apple iPhone 12 Mini - 64GB', 20990000.00, 14990000.00, '1653319788.png', '<ul>\r\n<li><strong>Công nghệ màn hình::</strong><span> </span><span>OLED</span></li>\r\n<li><strong>Độ phân giải::</strong><span> </span><span>Full HD+ (1080 x 2340 Pixels)</span></li>\r\n<li><strong>Màn hình rộng::</strong><span> </span><span>5.4\"</span></li>\r\n<li><strong>Độ phân giải:</strong><span> </span><span>2 camera 12 MP, 12 MP</span></li>\r\n<li><strong>Hệ điều hành:</strong><span> </span><span>iOS 14</span></li>\r\n<li><strong>Chip xử lý (CPU):</strong><span> </span><span>Apple A14 Bionic 6 nhân</span></li>\r\n<li><strong>Bộ nhớ trong (ROM):</strong><span> </span><span>64 GB</span></li>\r\n<li><strong>RAM:</strong><span> </span><span>4 GB</span></li>\r\n<li><strong>Mạng di động:</strong><span> </span><span>Hỗ trợ 5G</span></li>\r\n<li><strong>Số khe sim:</strong><span> </span><span>1 Nano SIM &amp; 1 eSIM</span></li>\r\n<li><strong>Dung lượng pin:</strong><span> </span><span>2227 mAh</span></li>\r\n</ul>', 1, 0, NULL, '2022-05-23 08:29:48', '2022-05-23 08:29:48'),
 (13, 'Xiaomi 12 Pro', 27990000.00, 22990000.00, '1653389260.png', '<ul>\r\n<li><strong>Công nghệ màn hình::</strong><span> </span><span>LTPO AMOLED, 120Hz, HDR10+</span></li>\r\n<li><strong>Độ phân giải::</strong><span> </span><span>QuadHD+ (1440 x 3200 pixels), tỉ lệ 20:9</span></li>\r\n<li><strong>Màn hình rộng::</strong><span> </span><span>6.73 inches</span></li>\r\n<li><strong>Độ phân giải:</strong><span> </span><span>50 MP, f/1.9 (góc rộng), Dual Pixel PDAF, OIS, 50 MP, f/1.9 (tele), PDAF, 2x zoom, 50 MP, f/2.2, 115˚ (góc siêu rộng), 32 MP (góc rộng)</span></li>\r\n<li><strong>Chip xử lý (CPU):</strong><span> </span><span>Qualcomm SM8450 Snapdragon 8 Gen1 (4 nm), 8 nhân (1x3.00 GHz &amp; 3x2.50 GHz &amp; 4x1.80 GHz), GPU: Adreno 730</span></li>\r\n<li><strong>Bộ nhớ trong (ROM):</strong><span> </span><span>256GB</span></li>\r\n<li><strong>RAM:</strong><span> </span><span>12GB</span></li>\r\n<li><strong>Số khe sim:</strong><span> </span><span>2 Nano SIM</span></li>\r\n<li><strong>Dung lượng pin:</strong><span> </span><span>Li-Po 4600 mAh, sạc nhanh 120W</span></li>\r\n</ul>', 3, 0, NULL, '2022-05-24 03:47:40', '2022-05-24 03:47:40');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `product_images`
+--
+
+CREATE TABLE `product_images` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `image_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `product_images`
+--
+
+INSERT INTO `product_images` (`id`, `image_name`, `product_id`, `created_at`, `updated_at`) VALUES
+(16, '16554655681.png', 2, '2022-06-17 04:32:48', '2022-06-17 04:32:48'),
+(18, '16554656621.png', 3, '2022-06-17 04:34:22', '2022-06-17 04:34:22'),
+(20, '16554657621.png', 4, '2022-06-17 04:36:02', '2022-06-17 04:36:02'),
+(22, '16554659071.png', 5, '2022-06-17 04:38:27', '2022-06-17 04:38:27'),
+(25, '16554662450.png', 1, '2022-06-17 04:44:05', '2022-06-17 04:44:05'),
+(27, '16554664930.png', 6, '2022-06-17 04:48:13', '2022-06-17 04:48:13'),
+(28, '16554665570.png', 7, '2022-06-17 04:49:17', '2022-06-17 04:49:17'),
+(29, '16554666030.png', 8, '2022-06-17 04:50:03', '2022-06-17 04:50:03'),
+(30, '16554666450.png', 9, '2022-06-17 04:50:45', '2022-06-17 04:50:45'),
+(31, '16554666810.png', 10, '2022-06-17 04:51:21', '2022-06-17 04:51:21'),
+(32, '16554667090.png', 11, '2022-06-17 04:51:49', '2022-06-17 04:51:49'),
+(33, '16554667570.png', 12, '2022-06-17 04:52:37', '2022-06-17 04:52:37'),
+(34, '16554668000.png', 13, '2022-06-17 04:53:20', '2022-06-17 04:53:20');
 
 -- --------------------------------------------------------
 
@@ -211,13 +248,6 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 ALTER TABLE `category`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `category_name_unique` (`name`);
-
---
--- Chỉ mục cho bảng `comment`
---
-ALTER TABLE `comment`
-  ADD KEY `comment_customer_id_foreign` (`customer_id`),
-  ADD KEY `comment_product_id_foreign` (`product_id`);
 
 --
 -- Chỉ mục cho bảng `customers`
@@ -262,6 +292,13 @@ ALTER TABLE `product`
   ADD KEY `product_category_id_foreign` (`category_id`);
 
 --
+-- Chỉ mục cho bảng `product_images`
+--
+ALTER TABLE `product_images`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_images_product_id_foreign` (`product_id`);
+
+--
 -- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
@@ -276,7 +313,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `customers`
@@ -288,19 +325,25 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT cho bảng `product_images`
+--
+ALTER TABLE `product_images`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
@@ -311,13 +354,6 @@ ALTER TABLE `users`
 --
 -- Các ràng buộc cho các bảng đã đổ
 --
-
---
--- Các ràng buộc cho bảng `comment`
---
-ALTER TABLE `comment`
-  ADD CONSTRAINT `comment_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`),
-  ADD CONSTRAINT `comment_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`);
 
 --
 -- Các ràng buộc cho bảng `favorite`
@@ -345,7 +381,8 @@ ALTER TABLE `order_details`
 ALTER TABLE `product`
   ADD CONSTRAINT `product_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
 
-
-
-
-
+--
+-- Các ràng buộc cho bảng `product_images`
+--
+ALTER TABLE `product_images`
+  ADD CONSTRAINT `product_images_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`);

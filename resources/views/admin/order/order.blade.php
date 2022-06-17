@@ -8,8 +8,6 @@
         <input type="text" name='key' class="form-control" id="" placeholder="Tìm kiếm">
     </div>
     <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
-    <a href="{{route('customer.create')}}" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i>Thêm
-        Mới</a>
 
 </form>
 <table class="table table-hover mt-5">
