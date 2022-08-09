@@ -72,19 +72,20 @@
 
 
 
+<br>
+    <div class="form-group">
+        {{--                    <?php--}}
+        {{--                    var_dump($item);die;--}}
+        {{--                    ?>--}}
+        <form action="{{route('payment')}}" method="POST" class="form-inline" role="form">
 
-            <div class="form-group">
-{{--                    <?php--}}
-{{--                    var_dump($item);die;--}}
-{{--                    ?>--}}
-                <form action="{{route('payment')}}" method="POST" class="form-inline" role="form">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="order_id" value="{{$item->id}}"></input>
+            <input type="hidden" name="price" value="{{$item->price}}"></input>
+            <button class="btn btn-success" type="submit">Thanh toán</button>
+        </form>
+    </div>
 
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <input type="hidden" name="order_id" value="{{$item->id}}"></input>
-                    <input type="hidden" name="price" value="{{$item->price}}"></input>
-                    <button class="btn btn-success" type="submit"> Thanh toan</button>
-                </form>
-            </div>
 
 
 

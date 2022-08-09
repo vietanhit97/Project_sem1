@@ -14,7 +14,7 @@ class PayController extends Controller
         $curl = curl_init();
         $url = "https://sandbox2.nganluong.vn/vietcombank-checkout/vcb/api/web/checkout/version_1_0";
 
-
+        $merchant_passcode ='123456789';
         $params = [
             'function' => 'CreateOrder',
             'merchant_site_code' => '7',
@@ -31,11 +31,10 @@ class PayController extends Controller
             'notify_url' => 'https://www.google.com/3',
             'language' => 'Vi',
             'version' => '1.0',
-            'payment_method_code' => 'WALLET',
-            'bank_code' => 'QRCODE',
+
         ];
-        dd($params);
-        $params['checksum'] = md5($params['merchant_site_code'].'|'.['order_code'].'|'.['order_description'].'|'.['amount'].'|'.['currency'].'|'.['buyer_fullname'].'|'.['buyer_email'].'|'.['buyer_mobile'].'|'.['buyer_address'].'|'.['return_url'].'|'.['cancel_url'].'|'.['notify_url'].'|'.['language'].'|'.['7']);
+//        dd($params);
+        $params['checksum'] = md5($params['merchant_site_code'].'|'.$params['order_code'].'|'.$params['order_description'].'|'.$params['amount'].'|'.$params['currency'].'|'.$params['buyer_fullname'].'|'.$params['buyer_email'].'|'.$params['buyer_mobile'].'|'.$params['buyer_address'].'|'.$params['return_url'].'|'.$params['cancel_url'].'|'.$params['notify_url'].'|'.$params['language'].'|'.$merchant_passcode);
 
         curl_setopt_array($curl, array(
             CURLOPT_URL => $url,
@@ -51,7 +50,14 @@ class PayController extends Controller
 
         $response = curl_exec($curl);
 
-        curl_close($curl);
-        echo $response;
+        $data = json_decode($response,true);//chuyển chuỗi
+//        var_dump($data);die;
+        $url=$data['result_data']['checkout_url'];//lấy url
+//        dd($url);
+
+        header("Location: {$url}");die();
+
+//        curl_close($curl);
+//        echo $response;
     }
 }
