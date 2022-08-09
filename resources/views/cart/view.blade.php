@@ -67,13 +67,32 @@
     </table>
     <hr>
     <a href="{{route('user')}}" class="btn btn-primary">Tiếp tục mua hàng</a>
-    <a href="{{route('cart.clear')}}" class="btn btn-danger" onclick="return confirm('bạn có chắc muốn xóa')">Xóa
-        hết</a>
+
     <a href="{{route('customer.checkout')}}" class="btn btn-success">Đặt hàng ngay</a>
+
+
+
+
+            <div class="form-group">
+{{--                    <?php--}}
+{{--                    var_dump($item);die;--}}
+{{--                    ?>--}}
+                <form action="{{route('payment')}}" method="POST" class="form-inline" role="form">
+
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="order_id" value="{{$item->id}}"></input>
+                    <input type="hidden" name="price" value="{{$item->price}}"></input>
+                    <button class="btn btn-success" type="submit"> Thanh toan</button>
+                </form>
+            </div>
+
+
+
+
     @else
     <div class="alert alert-danger mt">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <strong>Giỏ hàng !</strong> Không có dữ liệu nào... 
+        <strong>Giỏ hàng !</strong> Không có dữ liệu nào...
         <a href="{{route('user')}}" class="btn btn-primary">Tiếp tục mua hàng</a>
     </div>
     @endif

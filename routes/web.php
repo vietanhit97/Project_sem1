@@ -7,16 +7,17 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PayController;
+use App\Http\Controllers\ApiController;
 
 
-
- // khai báo router 
+ // khai báo router
  Route::get('admin/login',[AdminController::class,'login'])->name('admin.login'); // giao diện đăng nhập admin
  Route::post('admin/login',[AdminController::class,'check_login']); // gửi dữ liệu form check
  Route::get('admin/logout',[AdminController::class,'logout'])->name('admin.logout'); // thoát
- 
+
  Route::get('registration',[UserController::class,'registration'])->name('user.registration'); // Giao diện đăng ký tài khoản
- Route::post('registration',[UserController::class,'createRegistration']); // check đăng ký 
+ Route::post('registration',[UserController::class,'createRegistration']); // check đăng ký
  Route::get('login',[UserController::class,'login'])->name('user.login'); // Đăng nhập
  Route::post('login',[UserController::class,'check_login']); //giao diện đăng nhập người dùng
  Route::get('logout',[UserController::class,'logout'])->name('user.logout'); // thoát
@@ -24,12 +25,12 @@ use App\Http\Controllers\OrderController;
 
 Route::group(['prefix'=>'admin','middleware' => 'auth'], function(){ //group truyền 2 tham sô : mảng và function ,'middleware' => 'auth' đăng nhâoj
     Route::get('',[AdminController::class,'dashboard'])->name('admin');
-    Route::resources([  // cmd : php artisan route:list 
+    Route::resources([  // cmd : php artisan route:list
         'category'=> CategoryController::class,
         'product'=> ProductController::class,
         'customer' => CustomerController::class,
         'order' => OrderController::class,
-        
+
     ]);
     Route::group(['prefix'=>'category'], function(){
         Route::get('delete/trashed',[CategoryController::class,'trashed'])->name('category.trashed');
@@ -81,5 +82,15 @@ Route::group(['prefix' => 'customer'], function() {
     Route::get('/orders', [CustomerController::class, 'orders'])->name('customer.order');
     Route::get('/orders-detail/{order}', [CustomerController::class, 'orders_detail'])->name('customer.orders_detail');
 
-}); 
+});
+
+Route::group(['prefix' => 'pay'], function() {
+    Route::post('/payment', [PayController::class, 'payment'])->name('payment');
+    Route::get('/checkout', [CustomerController::class, 'checkout'])->name('customer.checkout');
+});
+Route::group(['prefix' => 'url'], function() {
+
+    Route::get('/url', [ApiController::class, 'url'])->name('url');
+});
+
 
